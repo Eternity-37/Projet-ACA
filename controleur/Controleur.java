@@ -1,6 +1,5 @@
 public class Controleur {
-    
-    public static void main(String[] args){
-        System.out.println(plateau.get());
+    public void jouer(){
+
     }
 }
