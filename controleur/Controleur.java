@@ -9,5 +9,4 @@ public class Controleur {
     
     public void jouer(){
         ihm.print_plateau(plateau);
-    }
 }

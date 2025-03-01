@@ -16,5 +16,4 @@ public class Plateau {
 
     public List<List<String>> getPlateau(){
         return plateau;
-    }
 }
