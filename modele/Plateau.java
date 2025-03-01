@@ -1,12 +1,19 @@
+import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Plateau {
-    ArrayList<ArrayList<String>> plateau = new ArrayList<>();
-    private int n = 8;
-
-    for (int i = 0; i<n ; i++){
-        plateau.add(new ArrayList<>(Collections.nCopies(n, null)));
+    private List<List<String>> plateau = new ArrayList<List<String>>();
+    
+    public Plateau(){
+        
+        int taille_plateau = 8;
+        for (int i = 0; i<taille_plateau ; i++){
+            plateau.add(new ArrayList<>(Collections.nCopies(taille_plateau, "\uD83D\uDFE9")));
+        }
+    
     }
+
+    public List<List<String>> getPlateau(){
+        return plateau;
 }

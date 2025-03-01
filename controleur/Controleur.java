@@ -1,6 +1,12 @@
 public class Controleur {
-    
-    public static void main(String[] args){
-        System.out.println(plateau.get());
+    private Ihm ihm;
+    private Plateau plateau;
+
+    public Controleur(Ihm ihm){
+        this.ihm = ihm;
+        this.plateau = new Plateau();
     }
+    
+    public void jouer(){
+        ihm.print_plateau(plateau);
 }
