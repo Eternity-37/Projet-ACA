@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Plateau {
-    private List<List<String>> plateau = new ArrayList<List<String>>();
+    private static List<List<String>> plateau = new ArrayList<List<String>>();
     
     public Plateau(){
         int taille_plateau = 8;
@@ -16,7 +16,7 @@ public class Plateau {
         return plateau;
     }
 
-    public void setCase(int x,int y,String chr){
+    public static void setCase(int x,int y,String chr){
         plateau.get(x).set(y,chr);
     }
 }
