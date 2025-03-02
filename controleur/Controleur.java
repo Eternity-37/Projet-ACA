@@ -8,6 +8,9 @@ public class Controleur {
     }
     
     public void jouer(){
+        ihm.asknomjoueurs(1);
+        ihm.asknomjoueurs(2);
         ihm.print_plateau(plateau);
+        
     }
 }

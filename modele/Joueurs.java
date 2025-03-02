@@ -1,18 +1,18 @@
 public class Joueurs {
-    private String joueur1 = null;
-    private String joueur2 = null;
+    private static String joueur1 = null;
+    private static String joueur2 = null;
 
-    public void setjoueur1(String nom){
+    public static void setjoueur1(String nom){
         joueur1 = nom;
     }
-    public void setjoueur2(String nom){
+    public static void setjoueur2(String nom){
         joueur2 = nom;
     }
 
-    public String getjoueur1(){
+    public static String getjoueur1(){
         return joueur1;
     }
-    public String getjoueur2(){
+    public static String getjoueur2(){
         return joueur2;
     }
 }
