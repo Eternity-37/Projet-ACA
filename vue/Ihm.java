@@ -1,16 +1,20 @@
 import java.util.List;
 import java.util.Scanner;
 public class Ihm {
-    public static void print_plateau(Plateau plateau){
-        for (List<String> row : plateau.getPlateau()) {
-            for (String cell : row) {
-                System.out.print(cell + " ");
+    public static void afficher_plateau(Plateau plateau){
+        System.out.println("   A  B  C  D   E  F  G  H");
+        for (int ligne = 0; ligne<8; ligne++) {
+            System.out.print(ligne+1+" ");
+            for (int colonne = 0; colonne<8; colonne++) {
+                System.out.print(Plateau.getCouleurcase(ligne,colonne) + " ");
             }
+            System.out.print(ligne+1);
             System.out.println();
         }
+        System.out.println("   A  B  C  D   E  F  G  H");
     }
 
-    public String asknomjoueurs(int joueur){
+    public String demandernomjoueurs(int joueur){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Joueur "+joueur+" veuillez saisir votre nom :");
         String nom = scanner.nextLine();

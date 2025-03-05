@@ -1,22 +1,34 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Plateau {
-    private static List<List<String>> plateau = new ArrayList<List<String>>();
+    private static int plateau[][] = new int[8][8];
     
     public Plateau(){
         int taille_plateau = 8;
         for (int i = 0; i<taille_plateau ; i++){
-            plateau.add(new ArrayList<>(Collections.nCopies(taille_plateau, "\uD83D\uDFE9")));
+            for (int j = 0; j<taille_plateau ; j++) {
+                plateau[i][j] = 0;
+            }
         }
+        setCase(3,3,2);setCase(3,4,1);setCase(4,3,1);setCase(4,4,2);
     }
 
-    public List<List<String>> getPlateau(){
+    public int[][] getPlateau(){
         return plateau;
     }
 
-    public static void setCase(int x,int y,String chr){
-        plateau.get(x).set(y,chr);
+    public static void setCase(int x,int y,int num){
+        plateau[x][y] = num;
+    }
+
+    public static String getCouleurcase(int x , int y){
+        int num = plateau[x][y];
+        if (num == 0){
+            return "\uD83D\uDFE9";
+        }
+        else if (num == 1){
+            return "\u26AB";
+        }
+        else{
+            return "\u26AA";
+        }
     }
 }

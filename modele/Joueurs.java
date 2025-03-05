@@ -24,4 +24,13 @@ public class Joueurs {
         }
         else return couleurjoueur2;
     }
+
+    public static int joueurSuivant(int joueur){
+        if (joueur == 1){
+            return 2;
+        }
+        else{
+            return 1;
+        }
+    }
 }

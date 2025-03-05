@@ -9,16 +9,24 @@ public class Controleur {
     
     public void jouer(){
         boolean etatjeu = true;
-        Joueurs.setjoueur1(ihm.asknomjoueurs(1));
-        Joueurs.setjoueur2(ihm.asknomjoueurs(2));
+        Joueurs.setjoueur1(ihm.demandernomjoueurs(1));
+        Joueurs.setjoueur2(ihm.demandernomjoueurs(2));
         int joueurcourant = 1;
         while (etatjeu){
-            ihm.print_plateau(plateau);
-            String coup = ihm.choixCoup(joueurcourant);
-            int x = coup.charAt(0) - '1';
-            int y = coup.charAt(1) - 'A';
-            Plateau.setCase(x,y,Joueurs.getcouleurjoueurcourant(joueurcourant));
-            ihm.print_plateau(plateau);
+            Ihm.afficher_plateau(plateau);
+            while (!Jeux.partieFinie(plateau)) {
+                String coup = ihm.choixCoup(joueurcourant);
+                int x = coup.charAt(0) - '1';
+                int y = coup.charAt(1) - 'A';
+                if (Jeux.coupEstValide(x,y,plateau)) {
+                    Plateau.setCase(x, y, joueurcourant);
+                    joueurcourant = Joueurs.joueurSuivant(joueurcourant);
+                    Ihm.afficher_plateau(plateau);
+                }
+                else{
+                    System.out.println("Erreur coup non valide");
+                }
+            }
             etatjeu = false;
         }
     }
