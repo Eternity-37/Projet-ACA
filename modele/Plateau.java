@@ -1,3 +1,5 @@
+package modele;
+
 public class Plateau {
     private static int plateau[][] = new int[8][8];
     
@@ -19,6 +21,8 @@ public class Plateau {
         plateau[x][y] = num;
     }
 
+    public static int getCase(int x,int y){return plateau[x][y];}
+
     public static String getCouleurcase(int x , int y){
         int num = plateau[x][y];
         if (num == 0){
@@ -31,4 +35,6 @@ public class Plateau {
             return "\u26AA";
         }
     }
+
+    public static void retournerPions(){}
 }
