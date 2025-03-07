@@ -29,7 +29,7 @@ public class Jeux {
         while (i < 8) {
             char caseActuelle = plateau.getCouleurCase(i, y);
 
-            if (caseActuelle == (joueur == '⚫' ? '⚪' : '⚫')) {
+            if (caseActuelle == (joueur == '\u26AB' ? '\u26AA' : '\u26AB')) {
                 pionAdverseTrouve = true;
             } else if (caseActuelle == joueur) {
                 return pionAdverseTrouve;
@@ -47,7 +47,7 @@ public class Jeux {
         while (j >= 0) {
             char caseActuelle = plateau.getCouleurCase(x, j);
 
-            if (caseActuelle == (joueur == '⚫' ? '⚪' : '⚫')) {
+            if (caseActuelle == (joueur == '\u26AB' ? '\u26AA' : '\u26AB')) {
                 pionAdverseTrouve = true;
             } else if (caseActuelle == joueur) {
                 return pionAdverseTrouve;
@@ -65,7 +65,7 @@ public class Jeux {
         while (j < 8) {
             char caseActuelle = plateau.getCouleurCase(x, j);
 
-            if (caseActuelle == (joueur == '⚫' ? '⚪' : '⚫')) {
+            if (caseActuelle == (joueur == '\u26AB' ? '\u26AA' : '\u26AB')) {
                 pionAdverseTrouve = true;
             } else if (caseActuelle == joueur) {
                 return pionAdverseTrouve;
@@ -78,7 +78,7 @@ public class Jeux {
     }
 
     public static boolean coupEstValide(int x, int y, Plateau plateau, char joueur) {
-        if (plateau.getCouleurcase(x, y) == "\uD83D\uDFE9") {
+        if (plateau.getCouleurcase(x, y).equals("\uD83D\uDFE9")) {
             return false;
         }
          return verifierHaut(x, y, plateau, joueur) || verifierBas(x, y, plateau, joueur) || verifierGauche(x, y, plateau, joueur) || verifierDroite(x, y, plateau, joueur);
