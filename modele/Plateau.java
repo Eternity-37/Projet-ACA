@@ -1,3 +1,5 @@
+package modele;
+
 public class Plateau {
     private static int plateau[][] = new int[8][8];
     

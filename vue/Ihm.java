@@ -1,3 +1,8 @@
+package vue;
+
+import modele.Joueurs;
+import modele.Plateau;
+
 import java.util.List;
 import java.util.Scanner;
 public class Ihm {

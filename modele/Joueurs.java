@@ -1,3 +1,5 @@
+package modele;
+
 public class Joueurs {
     private static String joueur1 = null;
     private static String joueur2 = null;

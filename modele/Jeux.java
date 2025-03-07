@@ -1,3 +1,5 @@
+package modele;
+
 import java.util.AbstractMap.SimpleEntry;
 
 public class Jeux {

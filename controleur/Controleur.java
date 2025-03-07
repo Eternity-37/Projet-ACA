@@ -1,3 +1,10 @@
+package controleur;
+
+import modele.Jeux;
+import modele.Joueurs;
+import modele.Plateau;
+import vue.Ihm;
+
 public class Controleur {
     private Ihm ihm;
     private Plateau plateau;
