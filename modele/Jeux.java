@@ -12,15 +12,17 @@ public class Jeux {
             new SimpleEntry<>(-1,1), new SimpleEntry<>(-1,-1),
     };
     private static int taille_plateau = Plateau.getTaillePlateau();
+
     public static boolean partieFinie(Plateau plateau){
         for (int i = 0; i<taille_plateau ; i++){
             for (int j = 0; j<taille_plateau ; j++) {
-                int caseCourante = plateau.getCase(i,j);
-                if (coupEstValide(i,j,plateau,1).isEmpty()){
-                    return false;
-                }
-                if (coupEstValide(i,j,plateau,2).isEmpty()){
-                    return false;
+                if (plateau.getCase(i,j)==0) {
+                    if (coupEstValide(i, j, plateau, 1).isEmpty()) {
+                        return false;
+                    }
+                    if (coupEstValide(i, j, plateau, 2).isEmpty()) {
+                        return false;
+                    }
                 }
             }
         }

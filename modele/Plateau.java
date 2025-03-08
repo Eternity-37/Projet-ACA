@@ -54,4 +54,27 @@ public class Plateau {
             }
         }
     }
+    public static String joueurGagnant(Plateau plateau){
+        int nbPionsjoueur1 = 0;
+        int nbPionsjoueur2 = 0;
+        for (int i = 0; i < plateau.plateau.length; i++) {
+            for (int j = 0; j < plateau.plateau.length; j++) {
+                if (plateau.getPlateau()[i][j]==1){
+                    nbPionsjoueur1++;
+                }
+                else if (plateau.getPlateau()[i][j]==2){
+                    nbPionsjoueur2++;
+                }
+            }
+        }
+        if (nbPionsjoueur1>nbPionsjoueur2){
+            return "Le joueur 1 a gagné avec : "+nbPionsjoueur1;
+        }
+        else if (nbPionsjoueur2>nbPionsjoueur1){
+            return "Le joueur 2 a gagné avec : "+nbPionsjoueur2;
+        }
+        else{
+            return "ex aequo";
+        }
+    }
 }
