@@ -33,6 +33,7 @@ public class Controleur {
                     }
                     else{
                         System.out.println("Erreur coup non valide");
+
                     }
                 }
                 else{
