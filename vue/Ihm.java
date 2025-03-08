@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 public class Ihm {
     public static void afficher_plateau(Plateau plateau){
+        int taille_plateau = Plateau.getTaillePlateau();
         System.out.println("   A  B  C  D   E  F  G  H");
-        for (int ligne = 0; ligne<8; ligne++) {
+        for (int ligne = 0; ligne<taille_plateau; ligne++) {
             System.out.print(ligne+1+" ");
-            for (int colonne = 0; colonne<8; colonne++) {
+            for (int colonne = 0; colonne<taille_plateau; colonne++) {
                 System.out.print(Plateau.getCouleurcase(ligne,colonne) + " ");
             }
             System.out.print(ligne+1);

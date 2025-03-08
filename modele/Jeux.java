@@ -1,6 +1,8 @@
 package modele;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jeux {
     private static SimpleEntry<Integer, Integer>[] casesVoisines = new SimpleEntry[]{
@@ -9,34 +11,47 @@ public class Jeux {
             new SimpleEntry<>(1,-1), new SimpleEntry<>(-1,0),
             new SimpleEntry<>(-1,1), new SimpleEntry<>(-1,-1),
     };
-
+    private static int taille_plateau = Plateau.getTaillePlateau();
     public static boolean partieFinie(Plateau plateau){
-        return false;
+        for (int i = 0; i<taille_plateau ; i++){
+            for (int j = 0; j<taille_plateau ; j++) {
+                int caseCourante = plateau.getCase(i,j);
+                if (coupEstValide(i,j,plateau,1).isEmpty()){
+                    return false;
+                }
+                if (coupEstValide(i,j,plateau,2).isEmpty()){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
-    public static boolean coupEstValide(int x, int y, Plateau plateau,int joueurcourant){
-        if (x < 0 || x >= 8 || y < 0 || y >= 8) {
-            return false;
+    public static List<SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, Plateau plateau, int joueurcourant){
+        List<SimpleEntry<Integer, Integer>> directionsValides = new ArrayList<>();
+
+        if (x < 0 || x >= taille_plateau || y < 0 || y >= taille_plateau) {
+            return directionsValides;
         }
         if (Plateau.getCase(x, y) != 0 || plateau.getCase(x, y) == Joueurs.joueurSuivant(joueurcourant)) {
-            return false;
+            return directionsValides;
         }
         for (SimpleEntry<Integer, Integer> direction : casesVoisines) {
             int ligne = direction.getKey();
             int colonne = direction.getValue();
             int lignecourante = x + ligne;
-            int colonnourante = y + colonne;
+            int colonnecourante = y + colonne;
             boolean aTrouveAdversaire = false;
 
-            while (lignecourante >= 0 && lignecourante < 8 && colonnourante >= 0 && colonnourante < 8) {
-                int caseCourante = plateau.getCase(lignecourante, colonnourante);
+            while (lignecourante >= 0 && lignecourante < taille_plateau && colonnecourante >= 0 && colonnecourante < taille_plateau) {
+                int caseCourante = plateau.getCase(lignecourante, colonnecourante);
 
                 if (caseCourante == 0) {
                     break;
                 }
                 if (caseCourante == joueurcourant) {
                     if (aTrouveAdversaire) {
-                        return true;
+                        directionsValides.add(new SimpleEntry<>(ligne, colonne));
                     }
                     else {
                         break;
@@ -44,9 +59,9 @@ public class Jeux {
                 }
                 aTrouveAdversaire = true;
                 lignecourante += ligne;
-                colonnourante += colonne;
+                colonnecourante += colonne;
             }
         }
-        return false;
+        return directionsValides;
     }
 }

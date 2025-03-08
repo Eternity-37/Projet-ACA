@@ -5,6 +5,9 @@ import modele.Joueurs;
 import modele.Plateau;
 import vue.Ihm;
 
+import java.util.AbstractMap;
+import java.util.List;
+
 public class Controleur {
     private Ihm ihm;
     private Plateau plateau;
@@ -26,8 +29,10 @@ public class Controleur {
                 if (coup.length() ==3) {
                     int x = coup.charAt(0) - '1';
                     int y = coup.charAt(2) - 'A';
-                    if (Jeux.coupEstValide(x, y, plateau, joueurcourant)) {
+                    List<AbstractMap.SimpleEntry<Integer, Integer>> coupsvalides = Jeux.coupEstValide(x, y, plateau, joueurcourant);
+                    if (!coupsvalides.isEmpty()) {
                         Plateau.setCase(x, y, joueurcourant);
+                        Plateau.retournerPions(plateau,x,y,coupsvalides,joueurcourant);
                         joueurcourant = Joueurs.joueurSuivant(joueurcourant);
                         Ihm.afficher_plateau(plateau);
                     }
@@ -40,6 +45,7 @@ public class Controleur {
                     System.out.println("Erreur format du coup non valide");
                 }
             }
+            System.out.println("Partie finie plus de coup valides");
             etatjeu = false;
         }
     }
