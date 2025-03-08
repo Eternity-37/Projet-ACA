@@ -14,19 +14,20 @@ public class Jeux {
     private static int taille_plateau = Plateau.getTaillePlateau();
 
     public static boolean partieFinie(Plateau plateau){
+        boolean coupPossible = false;
         for (int i = 0; i<taille_plateau ; i++){
             for (int j = 0; j<taille_plateau ; j++) {
                 if (plateau.getCase(i,j)==0) {
                     if (coupEstValide(i, j, plateau, 1).isEmpty()) {
-                        return false;
+                        coupPossible = true;
                     }
                     if (coupEstValide(i, j, plateau, 2).isEmpty()) {
-                        return false;
+                        coupPossible = true;
                     }
                 }
             }
         }
-        return true;
+        return !coupPossible;
     }
 
     public static List<SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, Plateau plateau, int joueurcourant){
