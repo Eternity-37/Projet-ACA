@@ -26,6 +26,10 @@ public class Controleur {
             Ihm.afficher_plateau(plateau);
             while (!Jeux.partieFinie(plateau)) {
                 String coup = ihm.choixCoup(joueurcourant);
+                if (coup.equals("P")){
+                    joueurcourant = Joueurs.joueurSuivant(joueurcourant);
+                    continue;
+                }
                 if (coup.length() ==3) {
                     int x = coup.charAt(0) - '1';
                     int y = coup.charAt(2) - 'A';
@@ -45,7 +49,7 @@ public class Controleur {
                     System.out.println("Erreur format du coup non valide");
                 }
             }
-            System.out.println("Partie finie plus de coup valides");
+            System.out.println(Plateau.joueurGagnant(plateau));
             etatjeu = false;
         }
     }
