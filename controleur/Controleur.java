@@ -1,7 +1,6 @@
 public class Controleur {
     private Ihm ihm;
     private Plateau plateau;
-    private char joueur;
 
     public Controleur(Ihm ihm){
         this.ihm = ihm;
@@ -19,7 +18,7 @@ public class Controleur {
                 String coup = ihm.choixCoup(joueurcourant);
                 int x = coup.charAt(0) - '1';
                 int y = coup.charAt(1) - 'A';
-                if (Jeux.coupEstValide(x,y,plateau,joueur)) {
+                if (Jeux.coupEstValide(x,y,plateau)) {
                     Plateau.setCase(x, y, joueurcourant);
                     joueurcourant = Joueurs.joueurSuivant(joueurcourant);
                     Ihm.afficher_plateau(plateau);

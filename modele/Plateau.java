@@ -31,7 +31,4 @@ public class Plateau {
             return "\u26AA";
         }
     }
-    public char getCouleurCase(int x, int y) {
-        return 0;
-    }
 }
