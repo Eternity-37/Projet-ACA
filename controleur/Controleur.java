@@ -26,6 +26,11 @@ public class Controleur {
             Ihm.afficher_plateau(plateau);
             while (!Jeux.partieFinie(plateau)) {
                 String coup = ihm.choixCoup(joueurcourant);
+                if (!Jeux.peutJouer(joueurcourant, plateau)) {
+                    Ihm.PasDePion(Joueurs.getjoueurcourant(joueurcourant));
+                    joueurcourant = Joueurs.joueurSuivant(joueurcourant);
+                    break;
+                }
                 if (coup.equals("P")){
                     joueurcourant = Joueurs.joueurSuivant(joueurcourant);
                     continue;
@@ -41,15 +46,15 @@ public class Controleur {
                         Ihm.afficher_plateau(plateau);
                     }
                     else{
-                        System.out.println("Erreur coup non valide");
+                        Ihm.Erreur("Coup impossible");
 
                     }
                 }
                 else{
-                    System.out.println("Erreur format du coup non valide");
+                    Ihm.Erreur("Format du coup non valide");
                 }
             }
-            System.out.println(Plateau.joueurGagnant(plateau));
+            Ihm.Gagnant(Plateau.joueurGagnant(plateau));
             etatjeu = false;
         }
     }

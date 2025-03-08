@@ -4,7 +4,7 @@ import java.util.AbstractMap;
 import java.util.List;
 
 public class Plateau {
-    private static int taille_plateau = 4;
+    private static int taille_plateau = 8;
     private static int plateau[][] = new int[taille_plateau][taille_plateau];
     public static int  getTaillePlateau() {return taille_plateau;}
     

@@ -67,4 +67,16 @@ public class Jeux {
         }
         return directionsValides;
     }
+
+    public static boolean peutJouer(int joueur, Plateau plateau) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (coupEstValide(i, j, plateau, joueur).size() > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

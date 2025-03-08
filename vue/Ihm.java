@@ -20,12 +20,22 @@ public class Ihm {
         System.out.println("   A  B  C  D   E  F  G  H");
     }
 
-    public String demandernomjoueurs(int joueur){
+    public String demandernomjoueurs(int joueur) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Joueur "+joueur+" veuillez saisir votre nom :");
-        String nom = scanner.nextLine();
+        String nom = "";
+        while (nom.trim().isEmpty()) {
+            System.out.println("Joueur " + joueur + ", veuillez saisir votre nom :");
+            nom = scanner.nextLine();
+            if (nom.trim().isEmpty()) {
+                System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");
+            }
+        }
+        if (joueur == 1) {
+            Joueurs.setjoueur1(nom);
+        } else {
+            Joueurs.setjoueur2(nom);
+        }
         return nom;
-
     }
 
     public String choixCoup(int joueur){
@@ -33,5 +43,15 @@ public class Ihm {
         System.out.println(Joueurs.getjoueurcourant(joueur)+" à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une letttre entre A et H (ex : 3 D) ou P pour passer son tour.");
         String coup = scanner.nextLine();
         return coup;
+    }
+    public static void Erreur(String message){
+        System.out.println("Erreur : " + message);
+    }
+    public static void Gagnant(String gagnant){
+        System.out.println(gagnant);
+
+    }
+    public static void PasDePion(String joueur){
+        System.out.println(joueur + " n'a plus de pion. Il a perdu. ");
     }
 }
