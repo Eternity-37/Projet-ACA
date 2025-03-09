@@ -20,12 +20,22 @@ public class Ihm {
         System.out.println("   A  B  C  D   E  F  G  H");
     }
 
-    public String demandernomjoueurs(int joueur){
+    public String demandernomjoueurs(int joueur) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Joueur "+joueur+" veuillez saisir votre nom :");
-        String nom = scanner.nextLine();
+        String nom = "";
+        while (nom.trim().isEmpty()) {
+            System.out.println("Joueur " + joueur + ", veuillez saisir votre nom :");
+            nom = scanner.nextLine();
+            if (nom.trim().isEmpty()) {
+                System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");
+            }
+        }
+        if (joueur == 1) {
+            Joueurs.setjoueur1(nom);
+        } else {
+            Joueurs.setjoueur2(nom);
+        }
         return nom;
-
     }
 
     public String choixCoup(int joueur){
@@ -34,4 +44,30 @@ public class Ihm {
         String coup = scanner.nextLine();
         return coup;
     }
+    public static void Erreur(String message){
+        System.out.println("Erreur : " + message);
+    }
+    public static void Gagnant(String gagnant){
+        System.out.println(gagnant + "a gagné la partie ! ");
+
+    }
+    public static void PlusDeCoup(int joueur){
+        System.out.println( Joueurs.getjoueurcourant(joueur) + " n'a plus de coup possible. ");
+    }
+
+    public static void afficherScoreFinal(String nomJoueur1, int victoireJoueur1, String nomJoueur2, int victoireJoueur2) {
+        System.out.println(nomJoueur1 + " a " + victoireJoueur1 + (victoireJoueur1 > 1 ? " victoires" : " victoire") +
+                ", contre " + victoireJoueur2 + (victoireJoueur2 > 1 ? " victoires" : " victoire") +
+                " pour " + nomJoueur2);
+    }
+
+        public static boolean rejouerPartie() {
+            System.out.println("Voulez-vous rejouer la partie ? (O/N)");
+            Scanner scanner = new Scanner(System.in);
+            String reponse = scanner.nextLine();
+            return reponse.equalsIgnoreCase("O");
+        }
+
 }
+
+

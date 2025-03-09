@@ -15,6 +15,13 @@ public class Joueurs {
         joueur2 = nom;
     }
 
+    public static String getJoueur1() {
+        return joueur1;
+    }
+    public static String getJoueur2() {
+        return joueur2;
+    }
+
     public static String getjoueurcourant(int n){
         if (n==1){
             return joueur1;
