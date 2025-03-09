@@ -4,7 +4,7 @@ import java.util.AbstractMap;
 import java.util.List;
 
 public class Plateau {
-    private static int taille_plateau = 8;
+    private static int taille_plateau = 4;
     private static int plateau[][] = new int[taille_plateau][taille_plateau];
     public static int  getTaillePlateau() {return taille_plateau;}
     
@@ -68,10 +68,10 @@ public class Plateau {
             }
         }
         if (nbPionsjoueur1>nbPionsjoueur2){
-            return "Le joueur 1 a gagné avec : "+nbPionsjoueur1;
+            return "Le joueur "+ modele.Joueurs.getJoueur1() + " a gagné avec : "+nbPionsjoueur1;
         }
         else if (nbPionsjoueur2>nbPionsjoueur1){
-            return "Le joueur 2 a gagné avec : "+nbPionsjoueur2;
+            return "Le joueur " + modele.Joueurs.getJoueur2() + " a gagné avec : "+nbPionsjoueur2;
         }
         else{
             return "ex aequo";

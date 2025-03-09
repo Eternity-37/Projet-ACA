@@ -51,7 +51,23 @@ public class Ihm {
         System.out.println(gagnant);
 
     }
-    public static void PasDePion(String joueur){
-        System.out.println(joueur + " n'a plus de pion. Il a perdu. ");
+    public static void PlusDeCoup(int joueur){
+        System.out.println( Joueurs.getjoueurcourant(joueur) + " n'a plus de coup possible. ");
     }
+
+    public static void afficherScoreFinal(String nomJoueur1, int victoireJoueur1, String nomJoueur2, int victoireJoueur2) {
+        System.out.println(nomJoueur1 + " a " + victoireJoueur1 + (victoireJoueur1 > 1 ? " victoires" : " victoire") +
+                ", contre " + victoireJoueur2 + (victoireJoueur2 > 1 ? " victoires" : " victoire") +
+                " pour " + nomJoueur2);
+    }
+
+        public static boolean rejouerPartie() {
+            System.out.println("Voulez-vous rejouer la partie ? (O/N)");
+            Scanner scanner = new Scanner(System.in);
+            String reponse = scanner.nextLine();
+            return reponse.equalsIgnoreCase("O");
+        }
+
 }
+
+
