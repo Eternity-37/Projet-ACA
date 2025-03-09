@@ -48,7 +48,7 @@ public class Ihm {
         System.out.println("Erreur : " + message);
     }
     public static void Gagnant(String gagnant){
-        System.out.println(gagnant);
+        System.out.println(gagnant + "a gagné la partie ! ");
 
     }
     public static void PlusDeCoup(int joueur){

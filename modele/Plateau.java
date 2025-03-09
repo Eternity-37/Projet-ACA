@@ -68,10 +68,10 @@ public class Plateau {
             }
         }
         if (nbPionsjoueur1>nbPionsjoueur2){
-            return "Le joueur "+ modele.Joueurs.getJoueur1() + " a gagné avec : "+nbPionsjoueur1;
+            return modele.Joueurs.getJoueur1() ;
         }
         else if (nbPionsjoueur2>nbPionsjoueur1){
-            return "Le joueur " + modele.Joueurs.getJoueur2() + " a gagné avec : "+nbPionsjoueur2;
+            return modele.Joueurs.getJoueur2();
         }
         else{
             return "ex aequo";
