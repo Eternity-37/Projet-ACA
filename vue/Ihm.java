@@ -118,6 +118,13 @@ public class Ihm {
         return reponse.equalsIgnoreCase("O");  // Retourne 'true' si la réponse est "O" (oui), sinon 'false'.
     }
 
+    public static boolean estIA() {
+        System.out.println("Voulez-vous jouer contre une IA O/N");
+        Scanner scanner = new Scanner(System.in);
+        String reponse = scanner.nextLine();
+        return reponse.equalsIgnoreCase("O");
+
+    }
 
 
 }
