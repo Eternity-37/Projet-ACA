@@ -3,7 +3,6 @@ package vue;
 import modele.Joueurs;
 import modele.Plateau;
 
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -29,16 +28,16 @@ public class Ihm {
 
     /**
      * Demande le nom d'un joueur.
-     * @param joueur1 true si le joueur est le joueur1, false si c'est le joueur2
+     * @param joueur true si le joueur est le joueur1, false si c'est le joueur2
      * @return Le nom du joueur.
      */
-    public String demandernomjoueurs(Boolean joueur1) {
+    public String demandernomjoueurs(Boolean joueur) {
         String nom = "";
         while (nom.trim().isEmpty()) {
-            if (joueur1) {
+            if (joueur) {
                 System.out.println("Joueur1, veuillez saisir votre nom :");
                 nom = scanner.nextLine();
-            } else if (!joueur1) {
+            } else if (!joueur) {
                 System.out.println("Joueur2, veuillez saisir votre nom :");
                 nom = scanner.nextLine();
             }
@@ -118,8 +117,18 @@ public class Ihm {
         return reponse.equalsIgnoreCase("O");  // Retourne 'true' si la réponse est "O" (oui), sinon 'false'.
     }
 
+    public static boolean estIA(String ia) {
+        System.out.println("Voulez-vous jouer contre une IA O/N");
+        Scanner scanner = new Scanner(System.in);
+        String reponse = scanner.nextLine();
+        return reponse.equalsIgnoreCase("O");
 
+        }
+
+    //public static String coupIA() {
+    //    System.out.println("L'ia a joué : " + );}
 
 }
+
 
 
