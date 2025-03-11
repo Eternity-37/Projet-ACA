@@ -8,19 +8,21 @@ import java.util.Scanner;
 
 public class Ihm {
     Scanner scanner = new Scanner(System.in);
+
     /**
      * Affiche le plateau de jeu.
+     *
      * @param plateau L'objet Plateau à afficher.
      */
-    public static void afficher_plateau(Plateau plateau){
+    public static void afficher_plateau(Plateau plateau) {
         int taille_plateau = Plateau.getTaillePlateau();  // Récupère la taille du plateau.
         System.out.println("   A  B  C  D   E  F  G  H");
-        for (int ligne = 0; ligne<taille_plateau; ligne++) {
-            System.out.print(ligne+1+" ");
-            for (int colonne = 0; colonne<taille_plateau; colonne++) {
-                System.out.print(plateau.getCouleurcase(ligne,colonne) + " ");  // Affiche la couleur de chaque case du plateau.
+        for (int ligne = 0; ligne < taille_plateau; ligne++) {
+            System.out.print(ligne + 1 + " ");
+            for (int colonne = 0; colonne < taille_plateau; colonne++) {
+                System.out.print(plateau.getCouleurcase(ligne, colonne) + " ");  // Affiche la couleur de chaque case du plateau.
             }
-            System.out.print(ligne+1);  // Affiche le numéro de la ligne après la grille.
+            System.out.print(ligne + 1);  // Affiche le numéro de la ligne après la grille.
             System.out.println();
         }
         System.out.println("   A  B  C  D   E  F  G  H");  // Affiche à nouveau l'en-tête des colonnes.
@@ -28,6 +30,7 @@ public class Ihm {
 
     /**
      * Demande le nom d'un joueur.
+     *
      * @param joueur true si le joueur est le joueur1, false si c'est le joueur2
      * @return Le nom du joueur.
      */
@@ -51,10 +54,11 @@ public class Ihm {
 
     /**
      * Demande à un joueur de choisir un coup à jouer.
+     *
      * @param joueur Le numéro du joueur qui doit jouer.
      * @return Le coup saisi par le joueur sous forme de chaîne (ex : "3 D" ou "P").
      */
-    public String choixCoup(Joueurs joueur){
+    public String choixCoup(Joueurs joueur) {
         // Affiche un message demandant à l'utilisateur de saisir son coup ou de passer son tour.
         System.out.println(joueur.getJoueur() + " à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une lettre entre A et H (ex : 3 D) ou P pour passer son tour.");
         String coup = scanner.nextLine();  // Récupère l'entrée du joueur pour le coup.
@@ -63,17 +67,19 @@ public class Ihm {
 
     /**
      * Affiche un message d'erreur.
+     *
      * @param message Le message d'erreur à afficher.
      */
-    public static void Erreur(String message){
+    public static void Erreur(String message) {
         System.out.println("Erreur : " + message);  // Affiche le message d'erreur fourni en paramètre.
     }
 
     /**
      * Affiche un message indiquant le gagnant de la partie.
+     *
      * @param gagnant Le nom du joueur qui a gagné la partie.
      */
-    public static void Gagnant(String gagnant){
+    public static void Gagnant(String gagnant) {
         if (gagnant.equals("ex aequo")) {  // Utilisation de .equals() pour comparer les chaînes de caractères
             System.out.println(gagnant);  // Affiche "ex aequo" si c'est un match nul
         } else {
@@ -83,9 +89,10 @@ public class Ihm {
 
     /**
      * Informe qu'un joueur n'a plus de coup possible.
+     *
      * @param joueur Le joueur qui n'a plus de coup à jouer.
      */
-    public static void PlusDeCoup(Joueurs joueur){
+    public static void PlusDeCoup(Joueurs joueur) {
         // Affiche que le joueur actuel ne peut plus jouer.
         String joueurcourant = joueur.getJoueur();
         System.out.println(joueurcourant + " n'a plus de coup possible.");
@@ -93,9 +100,10 @@ public class Ihm {
 
     /**
      * Affiche le score final de la partie entre les deux joueurs.
-     * @param nomJoueur1 Le nom du premier joueur.
+     *
+     * @param nomJoueur1      Le nom du premier joueur.
      * @param victoireJoueur1 Le nombre de victoires du premier joueur.
-     * @param nomJoueur2 Le nom du deuxième joueur.
+     * @param nomJoueur2      Le nom du deuxième joueur.
      * @param victoireJoueur2 Le nombre de victoires du deuxième joueur.
      */
     public static void afficherScoreFinal(String nomJoueur1, int victoireJoueur1, String nomJoueur2, int victoireJoueur2) {
@@ -107,6 +115,7 @@ public class Ihm {
 
     /**
      * Demande aux joueurs s'ils souhaitent rejouer la partie.
+     *
      * @return true si les joueurs veulent rejouer, false sinon.
      */
     public static boolean rejouerPartie() {
@@ -123,10 +132,7 @@ public class Ihm {
         String reponse = scanner.nextLine();
         return reponse.equalsIgnoreCase("O");
 
-        }
-
-    //public static String coupIA() {
-    //    System.out.println("L'ia a joué : " + );}
+    }
 
 }
 
