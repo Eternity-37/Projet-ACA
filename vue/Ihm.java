@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Ihm {
-
+    Scanner scanner = new Scanner(System.in);
     /**
      * Affiche le plateau de jeu.
      * @param plateau L'objet Plateau à afficher.
@@ -29,23 +29,23 @@ public class Ihm {
 
     /**
      * Demande le nom d'un joueur.
-     * @param joueur Le joueur à qui il faut demander le nom.
+     * @param joueur1 true si le joueur est le joueur1, false si c'est le joueur2
      * @return Le nom du joueur.
      */
-    public String demandernomjoueurs(int joueur) {
-        Scanner scanner = new Scanner(System.in);  // Crée un scanner pour récupérer les saisies.
+    public String demandernomjoueurs(Boolean joueur1) {
         String nom = "";
         while (nom.trim().isEmpty()) {
-            System.out.println("Joueur " + joueur + ", veuillez saisir votre nom :");
-            nom = scanner.nextLine();  // Lit le nom du joueur.
+            if (joueur1) {
+                System.out.println("Joueur1, veuillez saisir votre nom :");
+                nom = scanner.nextLine();
+            } else if (!joueur1) {
+                System.out.println("Joueur2, veuillez saisir votre nom :");
+                nom = scanner.nextLine();
+            }
+            // Lit le nom du joueur.
             if (nom.trim().isEmpty()) {
                 System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");  // Gère l'erreur si le nom est vide.
             }
-        }
-        if (joueur == 1) {
-            Joueurs.setjoueur1(nom);  // Définit le nom pour le joueur 1.
-        } else {
-            Joueurs.setjoueur2(nom);  // Définit le nom pour le joueur 2.
         }
         return nom;  // Retourne le nom du joueur.
     }
@@ -55,10 +55,9 @@ public class Ihm {
      * @param joueur Le numéro du joueur qui doit jouer.
      * @return Le coup saisi par le joueur sous forme de chaîne (ex : "3 D" ou "P").
      */
-    public String choixCoup(int joueur){
-        Scanner scanner = new Scanner(System.in);  // Crée un scanner pour lire l'entrée de l'utilisateur.
+    public String choixCoup(Joueurs joueur){
         // Affiche un message demandant à l'utilisateur de saisir son coup ou de passer son tour.
-        System.out.println(Joueurs.getjoueurcourant(joueur) + " à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une lettre entre A et H (ex : 3 D) ou P pour passer son tour.");
+        System.out.println(joueur.getJoueur() + " à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une lettre entre A et H (ex : 3 D) ou P pour passer son tour.");
         String coup = scanner.nextLine();  // Récupère l'entrée du joueur pour le coup.
         return coup;  // Retourne le coup saisi.
     }
@@ -87,9 +86,10 @@ public class Ihm {
      * Informe qu'un joueur n'a plus de coup possible.
      * @param joueur Le joueur qui n'a plus de coup à jouer.
      */
-    public static void PlusDeCoup(int joueur){
+    public static void PlusDeCoup(Joueurs joueur){
         // Affiche que le joueur actuel ne peut plus jouer.
-        System.out.println(Joueurs.getjoueurcourant(joueur) + " n'a plus de coup possible.");
+        String joueurcourant = joueur.getJoueur();
+        System.out.println(joueurcourant + " n'a plus de coup possible.");
     }
 
     /**

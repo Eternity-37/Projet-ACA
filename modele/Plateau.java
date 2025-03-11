@@ -107,7 +107,7 @@ public class Plateau {
      * Détermine le gagnant en comptant les pions sur le plateau.
      * @return Le nom du joueur gagnant ou "ex aequo" en cas d'égalité.
      */
-    public String joueurGagnant() {
+    public String joueurGagnant(Joueurs joueur1,Joueurs joueur2) {
         int nbPionsjoueur1 = 0;
         int nbPionsjoueur2 = 0;
 
@@ -124,9 +124,9 @@ public class Plateau {
 
         // Détermination du gagnant
         if (nbPionsjoueur1 > nbPionsjoueur2) {
-            return Joueurs.getJoueur1();  // Retourne le nom du joueur 1 si il a plus de pions
+            return joueur1.getJoueur();  // Retourne le nom du joueur 1 s'il n'a plus de pions
         } else if (nbPionsjoueur2 > nbPionsjoueur1) {
-            return Joueurs.getJoueur2();  // Retourne le nom du joueur 2 si il a plus de pions
+            return joueur2.getJoueur();  // Retourne le nom du joueur 2 s'il n'a plus de pions
         } else {
             return "ex aequo";  // Retourne "ex aequo" en cas d'égalité
         }
