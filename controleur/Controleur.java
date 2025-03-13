@@ -64,7 +64,11 @@ public class Controleur {
                         coup = ihm.choixCoup(joueur1);  // Demande le coup du joueur courant
                     }
                     else if (joueurcourant == 2) {
-                        AbstractMap.SimpleEntry<Integer,Integer> coups = IA.coupIA(Jeux.coupPossibleJoueurs(2,plateau));
+                        if(IA.coupIANaïve(Jeux.coupPossibleJoueurs(2,plateau)) == null){
+                            joueurcourant= Joueurs.joueurSuivant(joueurcourant);
+                            continue;
+                        }
+                        AbstractMap.SimpleEntry<Integer,Integer> coups = IA.coupIANaïve(Jeux.coupPossibleJoueurs(2,plateau));
                         int x = coups.getKey();  // Conversion du premier caractère (ligne)
                         int y = coups.getValue();  // Conversion du troisième caractère (colonne)
                         List<AbstractMap.SimpleEntry<Integer, Integer>> coupsvalides = Jeux.coupEstValide(x, y, plateau, joueurcourant);
@@ -116,11 +120,18 @@ public class Controleur {
                 }
 
                 // Une fois la partie terminée, on affiche le gagnant
-                String gagnant = plateau.joueurGagnant(joueur1, joueur2);  // Détermine le gagnant de la partie
-                Ihm.Gagnant(gagnant);  // Affiche le gagnant
+                int intgagnant = plateau.joueurGagnant(1, 2);  // Détermine le gagnant de la partie
+                String strgagnant = "";
+                if (intgagnant == 1) {
+                    strgagnant = joueur1.getJoueur();
+                }
+                else{
+                    strgagnant = joueur2.getJoueur();
+                }
+                Ihm.Gagnant(strgagnant);  // Affiche le gagnant
 
                 // Mise à jour du score des victoires du gagnant
-                mettreAJourVictoires(gagnant, joueur1, joueur2);
+                mettreAJourVictoires(strgagnant, joueur1, joueur2);
 
                 // Affiche le score final des deux joueurs
                 Ihm.afficherScoreFinal(Joueurs.getJoueur(), Joueurs.getNbVictoire(),
@@ -193,11 +204,18 @@ public class Controleur {
                 }
 
                 // Une fois la partie terminée, on affiche le gagnant
-                String gagnant = plateau.joueurGagnant(joueur1, joueur2);  // Détermine le gagnant de la partie
-                Ihm.Gagnant(gagnant);  // Affiche le gagnant
+                int intgagnant = plateau.joueurGagnant(1, 2);  // Détermine le gagnant de la partie
+                String strgagnant = "";
+                if (intgagnant == 1) {
+                    strgagnant = joueur1.getJoueur();
+                }
+                else{
+                    strgagnant = joueur2.getJoueur();
+                }
+                Ihm.Gagnant(strgagnant);  // Affiche le gagnant
 
                 // Mise à jour du score des victoires du gagnant
-                mettreAJourVictoires(gagnant, joueur1, joueur2);
+                mettreAJourVictoires(strgagnant, joueur1, joueur2);
 
                 // Affiche le score final des deux joueurs
                 Ihm.afficherScoreFinal(Joueurs.getJoueur(), Joueurs.getNbVictoire(),

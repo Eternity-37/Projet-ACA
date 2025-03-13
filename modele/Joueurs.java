@@ -2,7 +2,7 @@ package modele;
 
 public class Joueurs {
     // Noms des joueurs (initialement null)
-    private static String joueur = null;
+    private static String nomjoueur = null;
 
     // Nombre de victoires pour chaque joueur
     private static int nbVictoirejoueur = 0;
@@ -12,7 +12,7 @@ public class Joueurs {
      * @param nom Nom du joueur 1.
      */
     public static void setjoueur(String nom) {
-        joueur = nom;  // Assigne le nom du joueur 1
+        nomjoueur = nom;  // Assigne le nom du joueur 1
     }
 
     /**
@@ -20,7 +20,7 @@ public class Joueurs {
      * @return Nom du joueur 1.
      */
     public static String getJoueur() {
-        return joueur;  // Retourne le nom du joueur 1
+        return nomjoueur;  // Retourne le nom du joueur 1
     }
 
     /**

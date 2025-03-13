@@ -36,14 +36,6 @@ public class Plateau {
     }
 
     /**
-     * Retourne l'état actuel du plateau sous forme de tableau 2D.
-     * @return Le plateau de jeu sous forme de tableau.
-     */
-    public int[][] getPlateau() {
-        return plateau;  // Retourne le plateau actuel
-    }
-
-    /**
      * Modifie la valeur d'une case du plateau à une position donnée.
      * @param x La ligne de la case à modifier.
      * @param y La colonne de la case à modifier.
@@ -107,7 +99,7 @@ public class Plateau {
      * Détermine le gagnant en comptant les pions sur le plateau.
      * @return Le nom du joueur gagnant ou "ex aequo" en cas d'égalité.
      */
-    public String joueurGagnant(Joueurs joueur1,Joueurs joueur2) {
+    public int joueurGagnant(int joueur1,int joueur2) {
         int nbPionsjoueur1 = 0;
         int nbPionsjoueur2 = 0;
 
@@ -124,11 +116,42 @@ public class Plateau {
 
         // Détermination du gagnant
         if (nbPionsjoueur1 > nbPionsjoueur2) {
-            return joueur1.getJoueur();  // Retourne le nom du joueur 1 s'il n'a plus de pions
+            return joueur1;  // Retourne 1 si le joueur 1 n'a plus de pions
         } else if (nbPionsjoueur2 > nbPionsjoueur1) {
-            return joueur2.getJoueur();  // Retourne le nom du joueur 2 s'il n'a plus de pions
+            return joueur2;  // Retourne 2 si le joueur 2 n'a plus de pions
         } else {
-            return "ex aequo";  // Retourne "ex aequo" en cas d'égalité
+            return 0;  // Retourne 0 en cas d'égalité
         }
+    }
+
+    public int evaluationPlateau(Plateau plateau, int joueur) {
+        int eval = 0;
+        for (int i = 0; i < taille_plateau; i++) {
+            for (int j = 0; j < taille_plateau; j++) {
+                // Vérification des coins
+                if (i == taille_plateau - 1 && j == taille_plateau - 1 || i == 0 && j == 0 || i == 0 && j == taille_plateau - 1 || i == taille_plateau - 1 && j == 0) {
+                    if (plateau.getCase(i,j) == joueur) {
+                        eval += 11;
+                    }
+                }
+                // Vérification des bords
+                else if (i == 0 || i == taille_plateau - 1 || j == 0 || j == taille_plateau -1) {
+                    if (plateau.getCase(i,j) == joueur) {
+                        eval += 6;
+                    }
+                }
+                // Si le pion n'est ni sur un bord ni sur un coin
+                else if (plateau.getCase(i,j) == joueur) {
+                    eval ++;
+                }
+                // Vérification si la partie sera finie
+                if (plateau.joueurGagnant(joueur, Joueurs.joueurSuivant(joueur)) == joueur){
+                    eval += 1000;
+                } else if (plateau.joueurGagnant(joueur,Joueurs.joueurSuivant(joueur)) == Joueurs.joueurSuivant(joueur)) {
+                    eval -= 1000;
+                }
+            }
+        }
+        return eval;
     }
 }

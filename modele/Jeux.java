@@ -101,8 +101,8 @@ public class Jeux {
      */
     public static boolean peutJouer(int joueur, Plateau plateau) {
         // Vérifie chaque case pour savoir si un coup valide est possible
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
+        for (int i = 0; i < taille_plateau; i++) {
+            for (int j = 0; j < taille_plateau; j++) {
                 if (coupEstValide(i, j, plateau, joueur).size() > 0) {
                     return true;  // Si un coup valide est trouvé, le joueur peut jouer
                 }
