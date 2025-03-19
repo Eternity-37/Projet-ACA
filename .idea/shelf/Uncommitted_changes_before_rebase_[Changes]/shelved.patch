@@ -1,0 +1,39 @@
+Index: main/Main.java
+===================================================================
+diff --git a/main/Main.java b/main/Main.java
+deleted file mode 100644
+--- a/main/Main.java	(revision 0bea519091e7cf5a3aaf1f7d97f71f4376e21601)
++++ /dev/null	(revision 0bea519091e7cf5a3aaf1f7d97f71f4376e21601)
+@@ -1,12 +0,0 @@
+-package main;
+-
+-import controleur.Controleur;
+-import vue.Ihm;
+-
+-public class Main {
+-    public static void main(String[] args) {
+-        Ihm ihm = new Ihm();
+-        Controleur controleur = new Controleur(ihm);
+-        controleur.jouer();
+-    }
+-}
+Index: modele/IA.java
+===================================================================
+diff --git a/modele/IA.java b/modele/IA.java
+deleted file mode 100644
+--- a/modele/IA.java	(revision 0bea519091e7cf5a3aaf1f7d97f71f4376e21601)
++++ /dev/null	(revision 0bea519091e7cf5a3aaf1f7d97f71f4376e21601)
+@@ -1,13 +0,0 @@
+-package modele;
+-
+-import java.util.AbstractMap;
+-import java.util.List;
+-import java.util.Random;
+-
+-public class IA {
+-
+-    public static AbstractMap.SimpleEntry<Integer,Integer> coupIA(List<AbstractMap.SimpleEntry<Integer, Integer>> coupPossibles){
+-        Random nbrandom = new Random();
+-        return coupPossibles.get(nbrandom.nextInt(coupPossibles.size()));
+-    }
+-}
