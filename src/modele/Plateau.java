@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Plateau {
     private static final int taille_plateau = 8; // Taille fixe du plateau
-    private int[][] plateau; // Instance propre à chaque jeu
+    private static int[][] plateau; // Instance propre à chaque jeu
 
     /**
      * Constructeur : Initialise un plateau vide avec les pions de départ.
@@ -107,7 +107,7 @@ public class Plateau {
      * Détermine le gagnant en comptant les pions sur le plateau.
      * @return Le nom du joueur gagnant ou "ex aequo" en cas d'égalité.
      */
-    public String joueurGagnant(Joueurs joueur1,Joueurs joueur2) {
+    public static String joueurGagnant(Joueurs joueur1, Joueurs joueur2) {
         int nbPionsjoueur1 = 0;
         int nbPionsjoueur2 = 0;
 
@@ -130,5 +130,30 @@ public class Plateau {
         } else {
             return "ex aequo";  // Retourne "ex aequo" en cas d'égalité
         }
+    }
+
+    public static int evaluationPlateau(Plateau plateau, int joueurcourant, Joueurs joueur1, Joueurs joueur2) {
+        int valeur = 0;
+        if (Jeux.partieFinie(plateau)) {
+            if (joueurGagnant(joueur1, joueur2).equals(joueur1) ) {
+                valeur = 1000;
+            } else if (joueurGagnant(joueur1, joueur2).equals(joueur2)) {
+                valeur = -1000;
+            }
+        }
+        for (int i = 0; i < taille_plateau; i++) {
+            for (int j = 0; j < taille_plateau; j++) {
+                if (plateau.getCase(i, j) == joueurcourant) {
+                    if (i == 0 && j == 0 || i == taille_plateau - 1 && j == taille_plateau - 1 || i == 0 && j == taille_plateau - 1 || i == taille_plateau - 1 && j == 0) {
+                        valeur += 11;
+                    } else if (i == 0 || j == 0 || i == taille_plateau - 1 || j == taille_plateau - 1) {
+                        valeur += 6;
+                    } else {
+                        valeur++;
+                    }
+                }
+            }
+        }
+        return valeur;
     }
 }

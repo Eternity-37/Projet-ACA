@@ -111,4 +111,16 @@ public class Jeux {
         return false;  // Si aucun coup valide n'est trouvé, le joueur ne peut pas jouer
     }
 
+    public static List<SimpleEntry<Integer,Integer>> coupPossibleJoueurs(int joueurcourant, Plateau plateau) {
+        List<SimpleEntry<Integer,Integer>> coupsPossible = new ArrayList<>();
+        for (int i = 0; i < taille_plateau; i++) {
+            for (int j = 0; j < taille_plateau; j++) {
+                if (coupEstValide(i,j,plateau,joueurcourant).size() > 0) {
+                    coupsPossible.add(new SimpleEntry<>(i,j));
+                }
+            }
+        }
+        return coupsPossible;
+    }
+
 }
