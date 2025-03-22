@@ -12,7 +12,21 @@ public class IAMinMax {
         }
         if (joueurcourant == 2){
             int valeur = -2000;
-
+            Plateau plateau2 = plateau;
+            List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
+            for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
+                plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
+                valeur = Math.max(valeur, coupIA(plateau2,profondeur-1,Joueurs.joueurSuivant(joueurcourant),joueur1,joueur2));
+            }
+        }
+        else{
+            int valeur = 2000;
+            Plateau plateau2 = plateau;
+            List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
+            for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
+                plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
+                valeur = Math.min(valeur, coupIA(plateau2, profondeur - 1,joueurcourant, joueur1, joueur2));
+            }
         }
         return 0;
     }

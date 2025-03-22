@@ -135,7 +135,7 @@ public class Plateau {
     public static int evaluationPlateau(Plateau plateau, int joueurcourant, Joueurs joueur1, Joueurs joueur2) {
         int valeur = 0;
         if (Jeux.partieFinie(plateau)) {
-            if (joueurGagnant(joueur1, joueur2).equals(joueur1) ) {
+            if (joueurGagnant(joueur1, joueur2).equals(joueur1)) {
                 valeur = 1000;
             } else if (joueurGagnant(joueur1, joueur2).equals(joueur2)) {
                 valeur = -1000;

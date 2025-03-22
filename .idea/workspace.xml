@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="a">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projet java Othello.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/modele/IAMinMax.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
+    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="version qui marche">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projet java Othello/20250225_160525.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projet java Othello/20250225_160532.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projet java Othello/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projet java Othello/to-do list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/IA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IARandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/Jeux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Jeux.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modele/IAMinMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IAMinMax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modele/Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Plateau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vue/Ihm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vue/Ihm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +134,7 @@
       <workItem from="1742651376744" duration="24000" />
       <workItem from="1742651406098" duration="334000" />
       <workItem from="1742656428477" duration="85000" />
-      <workItem from="1742656530047" duration="1344000" />
+      <workItem from="1742656530047" duration="3381000" />
     </task>
     <task id="LOCAL-00001" summary="changement pour les packages">
       <option name="closed" value="true" />
@@ -195,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742391187696</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="version qui marche">
+      <option name="closed" value="true" />
+      <created>1742658020254</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1742658020254</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +213,7 @@
     <MESSAGE value="changement pour les packages" />
     <MESSAGE value="ajout des commentaires" />
     <MESSAGE value="a" />
-    <option name="LAST_COMMIT_MESSAGE" value="a" />
+    <MESSAGE value="version qui marche" />
+    <option name="LAST_COMMIT_MESSAGE" value="version qui marche" />
   </component>
 </project>
