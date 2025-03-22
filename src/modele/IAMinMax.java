@@ -13,19 +13,21 @@ public class IAMinMax {
         }
         if (joueurcourant == 2){
             valeur = -2000;
-            Plateau plateau2 = plateau;
             List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
             for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
+                Plateau plateau2 = plateau;
                 plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
+                plateau2.retournerPions(entry.getKey(),entry.getValue(),coupPossible,joueurcourant);
                 valeur = Math.max(valeur, coupIA(plateau2,profondeur-1,Joueurs.joueurSuivant(joueurcourant),joueur1,joueur2));
             }
         }
         else{
             valeur = 2000;
-            Plateau plateau2 = plateau;
             List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
             for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
+                Plateau plateau2 = plateau;
                 plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
+                plateau2.retournerPions(entry.getKey(),entry.getValue(),coupPossible,joueurcourant);
                 valeur = Math.min(valeur, coupIA(plateau2, profondeur - 1,joueurcourant, joueur1, joueur2));
             }
         }
