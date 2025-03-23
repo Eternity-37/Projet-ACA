@@ -2,35 +2,99 @@ package modele;
 
 import java.util.AbstractMap;
 import java.util.List;
-import java.util.Random;
 
-public class IAMinMax {
+public class IAMinMax implements IAStrategy {
 
-    public static int coupIA(Plateau plateau,int profondeur, int joueurcourant, Joueurs joueur1, Joueurs joueur2){
-        int valeur;
-        if (profondeur == 0 || Jeux.partieFinie(plateau)){
-            return Plateau.evaluationPlateau(plateau, joueurcourant, joueur1, joueur2);
+    @Override
+    public AbstractMap.SimpleEntry<Integer,Integer> calculerCoup(Plateau plateau, int joueurCourant, Joueurs joueur1, Joueurs joueur2) {
+        AbstractMap.SimpleEntry<Integer,Integer> meilleurCoup = null;
+        int meilleurScore = Integer.MIN_VALUE;
+        int profondeur = 6;
+
+        List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(joueurCourant, plateau);
+        if (coupsPossibles == null || coupsPossibles.isEmpty()) {
+            return null;
         }
-        if (joueurcourant == 2){
-            valeur = -2000;
-            List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
-            for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
-                Plateau plateau2 = plateau;
-                plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
-                plateau2.retournerPions(entry.getKey(),entry.getValue(),coupPossible,joueurcourant);
-                valeur = Math.max(valeur, coupIA(plateau2,profondeur-1,Joueurs.joueurSuivant(joueurcourant),joueur1,joueur2));
+
+        for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
+            Plateau copiePlateau = new Plateau(plateau);
+            List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, joueurCourant);
+            copiePlateau.setCase(coup.getKey(), coup.getValue(), joueurCourant);
+            copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, joueurCourant);
+
+            int score = minimax(copiePlateau, profondeur - 1, false, joueurCourant, joueur1, joueur2);
+            if (score > meilleurScore) {
+                meilleurScore = score;
+                meilleurCoup = coup;
             }
         }
-        else{
-            valeur = 2000;
-            List<AbstractMap.SimpleEntry<Integer,Integer>> coupPossible = Jeux.coupPossibleJoueurs(joueurcourant, plateau);
-            for (AbstractMap.SimpleEntry<Integer,Integer> entry : coupPossible) {
-                Plateau plateau2 = plateau;
-                plateau2.setCase(entry.getKey(), entry.getValue(), joueurcourant);
-                plateau2.retournerPions(entry.getKey(),entry.getValue(),coupPossible,joueurcourant);
-                valeur = Math.min(valeur, coupIA(plateau2, profondeur - 1,joueurcourant, joueur1, joueur2));
+
+        return meilleurCoup;
+    }
+
+    /**
+     * Implémente l'algorithme minimax pour évaluer les coups possibles.
+     * @param plateau L'état actuel du plateau.
+     * @param profondeur La profondeur de recherche restante.
+     * @param estMaximisant Indique si c'est le tour du joueur maximisant.
+     * @param joueurCourant Le joueur pour lequel on évalue les coups.
+     * @param joueur1 Le premier joueur.
+     * @param joueur2 Le second joueur.
+     * @return La valeur évaluée de la position.
+     */
+    private int minimax(Plateau plateau, int profondeur, boolean estMaximisant, int joueurCourant, Joueurs joueur1, Joueurs joueur2) {
+        if (profondeur == 0 || Jeux.partieFinie(plateau)) {
+            return evaluerPosition(plateau, joueurCourant);
+        }
+
+        if (estMaximisant) {
+            int meilleurScore = Integer.MIN_VALUE;
+            List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(joueurCourant, plateau);
+            if (coupsPossibles == null || coupsPossibles.isEmpty()) {
+                return Plateau.evaluationPlateau(plateau, joueurCourant, joueur1, joueur2);
+            }
+
+            for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
+                Plateau copiePlateau = new Plateau(plateau);
+                List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, joueurCourant);
+                copiePlateau.setCase(coup.getKey(), coup.getValue(), joueurCourant);
+                copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, joueurCourant);
+
+                int score = minimax(copiePlateau, profondeur - 1, false, joueurCourant, joueur1, joueur2);
+                meilleurScore = Math.max(meilleurScore, score);
+            }
+            return meilleurScore;
+        } else {
+            int pireScore = Integer.MAX_VALUE;
+            List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(Joueurs.joueurSuivant(joueurCourant), plateau);
+            if (coupsPossibles == null || coupsPossibles.isEmpty()) {
+                return Plateau.evaluationPlateau(plateau, joueurCourant, joueur1, joueur2);
+            }
+
+            for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
+                Plateau copiePlateau = new Plateau(plateau);
+                List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, Joueurs.joueurSuivant(joueurCourant));
+                copiePlateau.setCase(coup.getKey(), coup.getValue(), Joueurs.joueurSuivant(joueurCourant));
+                copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, Joueurs.joueurSuivant(joueurCourant));
+
+                int score = minimax(copiePlateau, profondeur - 1, true, joueurCourant, joueur1, joueur2);
+                pireScore = Math.min(pireScore, score);
+            }
+            return pireScore;
+        }
+    }
+
+    private int evaluerPosition(Plateau plateau, int joueur) {
+        int score = 0;
+        for (int i = 0; i < Plateau.getTaillePlateau(); i++) {
+            for (int j = 0; j < Plateau.getTaillePlateau(); j++) {
+                if (plateau.getCase(i, j) == joueur) {
+                    score++;
+                } else if (plateau.getCase(i, j) != 0) {
+                    score--;
+                }
             }
         }
-        return valeur;
+        return score;
     }
 }
