@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="version qui marche">
+    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="encore un fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modele/IAMinMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IAMinMax.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modele/IARandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IARandom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modele/Jeux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Jeux.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modele/Joueurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Joueurs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modele/Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Plateau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/vue/Ihm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vue/Ihm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,28 +47,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Théo",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/THEO/Documents/Projet java Othello",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Théo&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/THEO/Documents/Projet java Othello&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\THEO\Documents\Projet java Othello\src\modele" />
@@ -75,6 +80,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Projet java Othello" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.*" />
@@ -84,17 +90,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Projet java Othello" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Projet java Othello" />
-      <option name="filePath" />
-      <method v="2" />
     </configuration>
   </component>
   <component name="SharedIndexes">
@@ -134,7 +129,11 @@
       <workItem from="1742651376744" duration="24000" />
       <workItem from="1742651406098" duration="334000" />
       <workItem from="1742656428477" duration="85000" />
-      <workItem from="1742656530047" duration="3381000" />
+      <workItem from="1742656530047" duration="4862000" />
+      <workItem from="1742676768626" duration="841000" />
+      <workItem from="1742687458903" duration="882000" />
+      <workItem from="1742689082099" duration="2958000" />
+      <workItem from="1742744792370" duration="2006000" />
     </task>
     <task id="LOCAL-00001" summary="changement pour les packages">
       <option name="closed" value="true" />
@@ -192,7 +191,31 @@
       <option name="project" value="LOCAL" />
       <updated>1742658020254</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fonction MinMax">
+      <option name="closed" value="true" />
+      <created>1742660359126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742660359126</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix minmax">
+      <option name="closed" value="true" />
+      <created>1742660877884</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742660877884</updated>
+    </task>
+    <task id="LOCAL-00010" summary="encore un fix">
+      <option name="closed" value="true" />
+      <created>1742661398669</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742661398669</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +237,9 @@
     <MESSAGE value="ajout des commentaires" />
     <MESSAGE value="a" />
     <MESSAGE value="version qui marche" />
-    <option name="LAST_COMMIT_MESSAGE" value="version qui marche" />
+    <MESSAGE value="fonction MinMax" />
+    <MESSAGE value="fix minmax" />
+    <MESSAGE value="encore un fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="encore un fix" />
   </component>
 </project>
