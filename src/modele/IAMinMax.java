@@ -44,57 +44,36 @@ public class IAMinMax implements IAStrategy {
      */
     private int minimax(Plateau plateau, int profondeur, boolean estMaximisant, int joueurCourant, Joueurs joueur1, Joueurs joueur2) {
         if (profondeur == 0 || Jeux.partieFinie(plateau)) {
-            return evaluerPosition(plateau, joueurCourant);
+            return Plateau.evaluationPlateau(plateau, joueurCourant, joueur1, joueur2);
         }
 
         if (estMaximisant) {
             int meilleurScore = Integer.MIN_VALUE;
             List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(joueurCourant, plateau);
-            if (coupsPossibles == null || coupsPossibles.isEmpty()) {
-                return Plateau.evaluationPlateau(plateau, joueurCourant, joueur1, joueur2);
-            }
-
-            for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
-                Plateau copiePlateau = new Plateau(plateau);
-                List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, joueurCourant);
-                copiePlateau.setCase(coup.getKey(), coup.getValue(), joueurCourant);
-                copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, joueurCourant);
-
-                int score = minimax(copiePlateau, profondeur - 1, false, joueurCourant, joueur1, joueur2);
-                meilleurScore = Math.max(meilleurScore, score);
+            if (coupsPossibles != null && !coupsPossibles.isEmpty()) {
+                for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
+                    Plateau copiePlateau = new Plateau(plateau);
+                    List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, joueurCourant);
+                    copiePlateau.setCase(coup.getKey(), coup.getValue(), joueurCourant);
+                    copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, joueurCourant);
+                    meilleurScore = Math.max(meilleurScore, minimax(copiePlateau, profondeur - 1, false, joueurCourant, joueur1, joueur2));
+                }
             }
             return meilleurScore;
         } else {
-            int pireScore = Integer.MAX_VALUE;
-            List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(Joueurs.joueurSuivant(joueurCourant), plateau);
-            if (coupsPossibles == null || coupsPossibles.isEmpty()) {
-                return Plateau.evaluationPlateau(plateau, joueurCourant, joueur1, joueur2);
-            }
-
-            for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
-                Plateau copiePlateau = new Plateau(plateau);
-                List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, Joueurs.joueurSuivant(joueurCourant));
-                copiePlateau.setCase(coup.getKey(), coup.getValue(), Joueurs.joueurSuivant(joueurCourant));
-                copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, Joueurs.joueurSuivant(joueurCourant));
-
-                int score = minimax(copiePlateau, profondeur - 1, true, joueurCourant, joueur1, joueur2);
-                pireScore = Math.min(pireScore, score);
-            }
-            return pireScore;
-        }
-    }
-
-    private int evaluerPosition(Plateau plateau, int joueur) {
-        int score = 0;
-        for (int i = 0; i < Plateau.getTaillePlateau(); i++) {
-            for (int j = 0; j < Plateau.getTaillePlateau(); j++) {
-                if (plateau.getCase(i, j) == joueur) {
-                    score++;
-                } else if (plateau.getCase(i, j) != 0) {
-                    score--;
+            int meilleurScore = Integer.MAX_VALUE;
+            int joueurAdverse = joueurCourant == 1 ? 2 : 1;
+            List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(joueurAdverse, plateau);
+            if (coupsPossibles != null && !coupsPossibles.isEmpty()) {
+                for (AbstractMap.SimpleEntry<Integer, Integer> coup : coupsPossibles) {
+                    Plateau copiePlateau = new Plateau(plateau);
+                    List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = Jeux.coupEstValide(coup.getKey(), coup.getValue(), copiePlateau, joueurAdverse);
+                    copiePlateau.setCase(coup.getKey(), coup.getValue(), joueurAdverse);
+                    copiePlateau.retournerPions(coup.getKey(), coup.getValue(), directionsValides, joueurAdverse);
+                    meilleurScore = Math.min(meilleurScore, minimax(copiePlateau, profondeur - 1, true, joueurCourant, joueur1, joueur2));
                 }
             }
+            return meilleurScore;
         }
-        return score;
     }
 }
