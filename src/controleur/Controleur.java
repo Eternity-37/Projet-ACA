@@ -87,8 +87,10 @@ public class Controleur {
                     if (coup != null) {
                         int x = coup.getKey();
                         int y = coup.getValue();
+                        List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = 
+                            Jeux.coupEstValide(x, y, plateau, joueurActuel);
+                        plateau.retournerPions(x, y, directionsValides, joueurActuel);
                         plateau.setCase(x, y, joueurActuel);
-                        plateau.retournerPions(x, y, Jeux.coupEstValide(x, y, plateau, joueurActuel), joueurActuel);
                     }
                 } else {
                     ihm.afficherPlusDeCoup(joueurCourant);
