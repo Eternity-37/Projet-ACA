@@ -111,7 +111,7 @@ public class Controleur {
             }
             ihm.Gagnant(gagnant);
             ihm.afficherScoreFinal(joueur1.getJoueur(), joueur1.getNombreVictoires(), 
-                                 joueur2.getJoueur(), joueur2.getNombreVictoires());
+            joueur2.getJoueur(), joueur2.getNombreVictoires());
         } while (ihm.demanderRejouer());
     }
 }

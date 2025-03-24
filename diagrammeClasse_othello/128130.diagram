@@ -1,0 +1,79 @@
+format 224
+
+classcanvas 128002 class_ref 128130 // Main
+  classdiagramsettings member_max_width 0 end
+  xyzwh 260.48 2.9 2000 94 86
+end
+classcanvas 128130 class_ref 128258 // Ihm
+  classdiagramsettings member_max_width 0 end
+  xyzwh 41.34 373.66 2000 164 209
+end
+classcanvas 128258 class_ref 128386 // Controleur
+  classdiagramsettings member_max_width 0 end
+  xyzwh 235.22 123.6 2000 144 155
+end
+classcanvas 128386 class_ref 128514 // IAMinMax
+  classdiagramsettings member_max_width 0 end
+  xyzwh 493.02 614.68 2000 114 144
+end
+classcanvas 128514 class_ref 128642 // IARandom
+  classdiagramsettings member_max_width 0 end
+  xyzwh 629.84 609.02 2000 179 121
+end
+classcanvas 128642 class_ref 128770 // IAStrategy
+  classdiagramsettings member_max_width 0 end
+  xyzwh 521.28 409.32 2000 171 111
+end
+classcanvas 128770 class_ref 128898 // Jeux
+  classdiagramsettings member_max_width 0 end
+  xyzwh 550.75 175.48 2000 159 144
+end
+classcanvas 128898 class_ref 129026 // Joueurs
+  classdiagramsettings member_max_width 0 end
+  xyzwh 135.12 594.48 2000 159 166
+end
+classcanvas 129026 class_ref 129154 // Plateau
+  classdiagramsettings member_max_width 0 end
+  xyzwh 303.18 584.3 2000 118 203
+end
+relationcanvas 130818 relation_ref 129282 // <association>
+  from ref 128002 z 2001 to ref 128258
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130946 relation_ref 129410 // <association>
+  from ref 128258 z 2001 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131202 relation_ref 129538 // <association>
+  from ref 128258 z 2001 to ref 128898
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131330 relation_ref 129666 // <association>
+  from ref 128258 z 2001 to ref 129026
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131458 relation_ref 129794 // <dependency>
+  from ref 128258 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131842 relation_ref 130178 // <directional aggregation>
+  from ref 128386 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132098 relation_ref 130306 // <directional aggregation>
+  from ref 128514 z 2001 to ref 128642
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132226 relation_ref 136834 // <association>
+  from ref 128258 z 2001 to ref 128770
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end
