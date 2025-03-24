@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="encore un fix">
+    <list default="true" id="17b28385-0903-4a2f-b023-cc725a9c4275" name="Changes" comment="problème des pions qui ne se retournent pas réglé">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controleur/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controleur/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/IAMinMax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IAMinMax.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/IARandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/IARandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/Jeux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Jeux.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modele/Joueurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Joueurs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modele/Plateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modele/Plateau.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vue/Ihm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/vue/Ihm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +128,9 @@
       <workItem from="1742676768626" duration="841000" />
       <workItem from="1742687458903" duration="882000" />
       <workItem from="1742689082099" duration="2958000" />
-      <workItem from="1742744792370" duration="2006000" />
+      <workItem from="1742744792370" duration="2184000" />
+      <workItem from="1742747075483" duration="5000" />
+      <workItem from="1742747545440" duration="1857000" />
     </task>
     <task id="LOCAL-00001" summary="changement pour les packages">
       <option name="closed" value="true" />
@@ -215,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742661398669</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update globale du projet et finalisation de l'IA minmax">
+      <option name="closed" value="true" />
+      <created>1742746936424</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1742746936424</updated>
+    </task>
+    <task id="LOCAL-00012" summary="problème des pions qui ne se retournent pas réglé">
+      <option name="closed" value="true" />
+      <created>1742748085138</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742748085138</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +253,8 @@
     <MESSAGE value="fonction MinMax" />
     <MESSAGE value="fix minmax" />
     <MESSAGE value="encore un fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="encore un fix" />
+    <MESSAGE value="update globale du projet et finalisation de l'IA minmax" />
+    <MESSAGE value="problème des pions qui ne se retournent pas réglé" />
+    <option name="LAST_COMMIT_MESSAGE" value="problème des pions qui ne se retournent pas réglé" />
   </component>
 </project>

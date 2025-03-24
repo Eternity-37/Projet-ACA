@@ -109,8 +109,8 @@ public class Plateau {
 
             // Tant que la case appartient à l'adversaire et est dans les limites du plateau, on retourne les pions
             while (ligneCourante >= 0 && ligneCourante < taillePlateau && 
-                   colonneCourante >= 0 && colonneCourante < taillePlateau && 
-                   getCase(ligneCourante, colonneCourante) == Joueurs.joueurSuivant(joueurCourant)) {
+                colonneCourante >= 0 && colonneCourante < taillePlateau && 
+                getCase(ligneCourante, colonneCourante) == Joueurs.joueurSuivant(joueurCourant)) {
                 setCase(ligneCourante, colonneCourante, joueurCourant);  // Retourne le pion dans cette direction
                 ligneCourante += ligne;  // Avance dans la direction
                 colonneCourante += colonne;  // Avance dans la direction
