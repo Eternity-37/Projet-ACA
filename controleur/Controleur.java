@@ -63,9 +63,15 @@ public class Controleur {
                     } else {
                         String choixCoup = ihm.choixCoup(joueurCourant);
                         if (choixCoup.equalsIgnoreCase("P")) {
-                            ihm.afficherPlusDeCoup(joueurCourant);
-                            partieTerminee = true;
-                            continue;
+                            if (!Jeux.peutJouer(joueurActuel, plateau)) {
+                                ihm.afficherPlusDeCoup(joueurCourant);
+                                continue;
+                            }
+                            else{
+                                ihm.afficherErreur("Il reste des coups valides");
+                                continue;
+                            }
+
                         }
                         try {
                             int x = choixCoup.charAt(0) - '1';
