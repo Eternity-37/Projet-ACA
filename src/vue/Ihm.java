@@ -14,42 +14,40 @@ public class Ihm {
      *
      * @param plateau L'objet Plateau à afficher.
      */
-    public static void afficher_plateau(Plateau plateau) {
-        int taille_plateau = Plateau.getTaillePlateau();  // Récupère la taille du plateau.
+    public static void afficherPlateau(Plateau plateau) {
+        int taillePlateau = Plateau.getTaillePlateau();  // Récupère la taille du plateau
         System.out.println("   A  B  C  D   E  F  G  H");
-        for (int ligne = 0; ligne < taille_plateau; ligne++) {
+        for (int ligne = 0; ligne < taillePlateau; ligne++) {
             System.out.print(ligne + 1 + " ");
-            for (int colonne = 0; colonne < taille_plateau; colonne++) {
-                System.out.print(plateau.getCouleurcase(ligne, colonne) + " ");  // Affiche la couleur de chaque case du plateau.
+            for (int colonne = 0; colonne < taillePlateau; colonne++) {
+                System.out.print(plateau.getCouleurCase(ligne, colonne) + " ");  // Affiche la couleur de chaque case
             }
-            System.out.print(ligne + 1);  // Affiche le numéro de la ligne après la grille.
+            System.out.print(ligne + 1);  // Affiche le numéro de la ligne après la grille
             System.out.println();
         }
-        System.out.println("   A  B  C  D   E  F  G  H");  // Affiche à nouveau l'en-tête des colonnes.
+        System.out.println("   A  B  C  D   E  F  G  H");  // Affiche à nouveau l'en-tête des colonnes
     }
 
     /**
      * Demande le nom d'un joueur.
-     *
-     * @param joueur true si le joueur est le joueur1, false si c'est le joueur2
+     * @param estPremierJoueur true si c'est le premier joueur, false si c'est le second
      * @return Le nom du joueur.
      */
-    public String demandernomjoueurs(Boolean joueur) {
+    public String demanderNomJoueur(boolean estPremierJoueur) {
         String nom = "";
         while (nom.trim().isEmpty()) {
-            if (joueur) {
-                System.out.println("Joueur1, veuillez saisir votre nom :");
+            if (estPremierJoueur) {
+                System.out.println("Joueur 1, veuillez saisir votre nom :");
                 nom = scanner.nextLine();
-            } else if (!joueur) {
-                System.out.println("Joueur2, veuillez saisir votre nom :");
+            } else {
+                System.out.println("Joueur 2, veuillez saisir votre nom :");
                 nom = scanner.nextLine();
             }
-            // Lit le nom du joueur.
             if (nom.trim().isEmpty()) {
-                System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");  // Gère l'erreur si le nom est vide.
+                System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");
             }
         }
-        return nom;  // Retourne le nom du joueur.
+        return nom;
     }
 
     /**
@@ -67,11 +65,10 @@ public class Ihm {
 
     /**
      * Affiche un message d'erreur.
-     *
      * @param message Le message d'erreur à afficher.
      */
-    public static void Erreur(String message) {
-        System.out.println("Erreur : " + message);  // Affiche le message d'erreur fourni en paramètre.
+    public static void afficherErreur(String message) {
+        System.out.println("Erreur : " + message);
     }
 
     /**
@@ -89,13 +86,11 @@ public class Ihm {
 
     /**
      * Informe qu'un joueur n'a plus de coup possible.
-     *
      * @param joueur Le joueur qui n'a plus de coup à jouer.
      */
-    public static void PlusDeCoup(Joueurs joueur) {
-        // Affiche que le joueur actuel ne peut plus jouer.
-        String joueurcourant = joueur.getJoueur();
-        System.out.println(joueurcourant + " n'a plus de coup possible.");
+    public static void afficherPlusDeCoup(Joueurs joueur) {
+        String nomJoueur = joueur.getJoueur();
+        System.out.println(nomJoueur + " n'a plus de coup possible.");
     }
 
     /**
@@ -115,23 +110,37 @@ public class Ihm {
 
     /**
      * Demande aux joueurs s'ils souhaitent rejouer la partie.
-     *
      * @return true si les joueurs veulent rejouer, false sinon.
      */
-    public static boolean rejouerPartie() {
-        // Demande à l'utilisateur s'il souhaite rejouer.
+    public static boolean demanderRejouer() {
         System.out.println("Voulez-vous rejouer la partie ? (O/N)");
-        Scanner scanner = new Scanner(System.in);  // Crée un scanner pour lire l'entrée.
-        String reponse = scanner.nextLine();  // Récupère la réponse de l'utilisateur.
-        return reponse.equalsIgnoreCase("O");  // Retourne 'true' si la réponse est "O" (oui), sinon 'false'.
-    }
-
-    public static boolean estIA(String ia) {
-        System.out.println("Voulez-vous jouer contre une IA O/N");
         Scanner scanner = new Scanner(System.in);
         String reponse = scanner.nextLine();
         return reponse.equalsIgnoreCase("O");
+    }
 
+    public static boolean estIA() {
+        System.out.println("Voulez-vous jouer contre une IA ? (O/N)");
+        Scanner scanner = new Scanner(System.in);
+        String reponse = scanner.nextLine();
+        return reponse.equalsIgnoreCase("O");
+    }
+
+    public static boolean choisirIAMinMax() {
+        System.out.println("Quelle IA souhaitez-vous affronter ?");
+        System.out.println("1 - IA Aléatoire (plus facile)");
+        System.out.println("2 - IA MinMax (plus difficile)");
+        Scanner scanner = new Scanner(System.in);
+        String reponse = scanner.nextLine();
+        return reponse.equals("2");
+    }
+
+    /**
+     * Affiche un message de l'IA.
+     * @param message Le message à afficher.
+     */
+    public void afficherMessageIA(String message) {
+        System.out.println(message);
     }
 
 }
