@@ -1,10 +1,13 @@
-package modele;
+package modele.Othello;
+
+import modele.ChoixJeux;
+import modele.Joueurs;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jeux {
+public class LogiqueOthello implements ChoixJeux {
     // Définit les directions possibles autour d'une case (les 8 directions autour d'une case)
     private static SimpleEntry<Integer, Integer>[] directionsPossibles = new SimpleEntry[]{
             new SimpleEntry<>(0,1), new SimpleEntry<>(0,-1),
@@ -12,7 +15,7 @@ public class Jeux {
             new SimpleEntry<>(1,-1), new SimpleEntry<>(-1,0),
             new SimpleEntry<>(-1,1), new SimpleEntry<>(-1,-1),
     };
-    private static int taillePlateau = Plateau.getTaillePlateau();  // Taille du plateau
+    private static int taillePlateau = PlateauOthello.getTaillePlateau();  // Taille du plateau
 
     /**
      * Vérifie si la partie est terminée.
@@ -20,7 +23,7 @@ public class Jeux {
      * @param plateau L'état actuel du plateau.
      * @return true si la partie est terminée (aucun coup possible), false sinon.
      */
-    public static boolean partieFinie(Plateau plateau){
+    public static boolean partieFinie(PlateauOthello plateau){
         // Vérifie si aucun des deux joueurs ne peut jouer
         return !peutJouer(1, plateau) && !peutJouer(2, plateau);
     }
@@ -34,15 +37,15 @@ public class Jeux {
      * @param joueurCourant Le joueur qui joue (1 ou 2).
      * @return Liste des directions valides où le coup peut être effectué.
      */
-    public static List<SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, Plateau plateau, int joueurCourant){
+    public static List<SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, PlateauOthello plateau, int joueurCourant){
         List<SimpleEntry<Integer, Integer>> directionsValides = new ArrayList<>();
 
         // Vérification si les coordonnées sont valides
         if (x < 0 || x >= taillePlateau || y < 0 || y >= taillePlateau) {
             return directionsValides;  // Si la case est hors du plateau, retourne une liste vide
         }
-        // Si la case est déjà occupée ou appartient au joueur courant, le coup est invalide
-        if (plateau.getCase(x, y) != 0 || plateau.getCase(x, y) == Joueurs.joueurSuivant(joueurCourant)) {
+        // Si la case est déjà occupée, le coup est invalide
+        if (plateau.getCase(x, y) != 0) {
             return directionsValides;
         }
 
@@ -84,7 +87,7 @@ public class Jeux {
      * @param plateau L'état actuel du plateau.
      * @return true si le joueur peut encore jouer, false sinon.
      */
-    public static boolean peutJouer(int joueur, Plateau plateau) {
+    public static boolean peutJouer(int joueur, PlateauOthello plateau) {
         // Vérifie chaque case pour savoir si un coup valide est possible
         for (int i = 0; i < taillePlateau; i++) {
             for (int j = 0; j < taillePlateau; j++) {
@@ -102,7 +105,7 @@ public class Jeux {
      * @param plateau L'état actuel du plateau.
      * @return Liste des coordonnées (x,y) des coups possibles.
      */
-    public static List<SimpleEntry<Integer,Integer>> coupsPossibles(int joueurCourant, Plateau plateau) {
+    public static List<SimpleEntry<Integer,Integer>> coupsPossibles(int joueurCourant, PlateauOthello plateau) {
         List<SimpleEntry<Integer,Integer>> coupsPossibles = new ArrayList<>();
         for (int i = 0; i < taillePlateau; i++) {
             for (int j = 0; j < taillePlateau; j++) {

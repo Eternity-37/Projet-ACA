@@ -1,4 +1,6 @@
-package modele;
+package modele.Othello;
+
+import modele.Joueurs;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -14,8 +16,8 @@ public class IARandom implements IAStrategy {
      * @return Un coup aléatoire parmi les coups possibles, ou null si aucun coup n'est possible.
      */
     @Override
-    public AbstractMap.SimpleEntry<Integer,Integer> calculerCoup(Plateau plateau, int joueurCourant, Joueurs joueur1, Joueurs joueur2) {
-        List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = Jeux.coupsPossibles(joueurCourant, plateau);
+    public AbstractMap.SimpleEntry<Integer,Integer> calculerCoup(PlateauOthello plateau, int joueurCourant, Joueurs joueur1, Joueurs joueur2) {
+        List<AbstractMap.SimpleEntry<Integer, Integer>> coupsPossibles = LogiqueOthello.coupsPossibles(joueurCourant, plateau);
         if (coupsPossibles == null || coupsPossibles.isEmpty()) {
             return null;
         }

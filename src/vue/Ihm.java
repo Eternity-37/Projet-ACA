@@ -1,21 +1,21 @@
 package vue;
 
 import modele.Joueurs;
-import modele.Plateau;
+import modele.Othello.PlateauOthello;
 
 import java.util.Scanner;
 
 
 public class Ihm {
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     /**
      * Affiche le plateau de jeu.
      *
      * @param plateau L'objet Plateau à afficher.
      */
-    public static void afficherPlateau(Plateau plateau) {
-        int taillePlateau = Plateau.getTaillePlateau();  // Récupère la taille du plateau
+    public static void afficherPlateau(PlateauOthello plateau) {
+        int taillePlateau = PlateauOthello.getTaillePlateau();  // Récupère la taille du plateau
         System.out.println("   A  B  C  D   E  F  G  H");
         for (int ligne = 0; ligne < taillePlateau; ligne++) {
             System.out.print(ligne + 1 + " ");
@@ -38,11 +38,10 @@ public class Ihm {
         while (nom.trim().isEmpty()) {
             if (estPremierJoueur) {
                 System.out.println("Joueur 1, veuillez saisir votre nom :");
-                nom = scanner.nextLine();
             } else {
                 System.out.println("Joueur 2, veuillez saisir votre nom :");
-                nom = scanner.nextLine();
             }
+            nom = scanner.nextLine();
             if (nom.trim().isEmpty()) {
                 System.out.println("Erreur : Le nom ne peut pas être vide. Essayez à nouveau.");
             }
@@ -59,8 +58,8 @@ public class Ihm {
     public String choixCoup(Joueurs joueur) {
         // Affiche un message demandant à l'utilisateur de saisir son coup ou de passer son tour.
         System.out.println(joueur.getJoueur() + " à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une lettre entre A et H (ex : 3 D) ou P pour passer son tour.");
-        String coup = scanner.nextLine();  // Récupère l'entrée du joueur pour le coup.
-        return coup;  // Retourne le coup saisi.
+        // Récupère l'entrée du joueur pour le coup.
+        return scanner.nextLine();  // Retourne le coup saisi.
     }
 
     /**
@@ -114,14 +113,12 @@ public class Ihm {
      */
     public static boolean demanderRejouer() {
         System.out.println("Voulez-vous rejouer la partie ? (O/N)");
-        Scanner scanner = new Scanner(System.in);
         String reponse = scanner.nextLine();
         return reponse.equalsIgnoreCase("O");
     }
 
     public static boolean estIA() {
         System.out.println("Voulez-vous jouer contre une IA ? (O/N)");
-        Scanner scanner = new Scanner(System.in);
         String reponse = scanner.nextLine();
         return reponse.equalsIgnoreCase("O");
     }
@@ -130,7 +127,6 @@ public class Ihm {
         System.out.println("Quelle IA souhaitez-vous affronter ?");
         System.out.println("1 - IA Aléatoire (plus facile)");
         System.out.println("2 - IA MinMax (plus difficile)");
-        Scanner scanner = new Scanner(System.in);
         String reponse = scanner.nextLine();
         return reponse.equals("2");
     }
@@ -141,6 +137,13 @@ public class Ihm {
      */
     public void afficherMessageIA(String message) {
         System.out.println(message);
+    }
+
+    public static int choisirJeux(){
+        System.out.println("A quel jeux souhaitez vous jouer ? ");
+        System.out.println("1 - Jouer à l'Othello");
+        System.out.println("2 - Jouer à l'Awale");
+        return scanner.nextInt();
     }
 
 }

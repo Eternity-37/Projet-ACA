@@ -1,22 +1,28 @@
 package controleur;
 
+import modele.Awale.LogiqueAwale;
+import modele.Awale.PlateauAwale;
+import modele.ChoixJeux;
+import modele.ChoixPlateau;
 import modele.Joueurs;
-import modele.Plateau;
-import modele.IAStrategy;
-import modele.IARandom;
-import modele.IAMinMax;
-import modele.Jeux;
+import modele.Othello.PlateauOthello;
+import modele.Othello.IAStrategy;
+import modele.Othello.IARandom;
+import modele.Othello.IAMinMax;
+import modele.Othello.LogiqueOthello;
 import vue.Ihm;
 import java.util.AbstractMap;
 import java.util.List;
 
 public class Controleur {
     private Ihm ihm;
-    private Plateau plateau;
+    private PlateauOthello plateau;
     private Joueurs joueur1;
     private Joueurs joueur2;
     private Joueurs ordinateur;
     private IAStrategy strategieIA;
+    private ChoixJeux choixJeux;
+    private ChoixPlateau choixPlateau;
 
     /**
      * Constructeur du contrôleur, initialise l'interface utilisateur et le plateau de jeu.
@@ -24,14 +30,24 @@ public class Controleur {
      */
     public Controleur(Ihm ihm) {
         this.ihm = ihm;
-        this.plateau = new Plateau();
         this.joueur1 = new Joueurs();
         this.joueur2 = new Joueurs();
         this.ordinateur = new Joueurs();
         this.strategieIA = null;
+        this.choixJeux = null;
+        this.choixPlateau = null;
     }
 
     public void jouer() {
+        int nbJeux = ihm.choisirJeux();
+        if (nbJeux == 1){
+            this.choixJeux = new LogiqueOthello();
+            this.choixPlateau =new PlateauOthello();
+        }
+        else if (nbJeux == 2){
+            this.choixJeux = new LogiqueAwale();
+            this.choixPlateau = new PlateauAwale();
+        }
         joueur1.setNomJoueur(ihm.demanderNomJoueur(true));
         boolean jouerContreIA = ihm.estIA();
         if (!jouerContreIA) {
@@ -43,7 +59,7 @@ public class Controleur {
         }
 
         do {
-            plateau = new Plateau();
+            plateau = new PlateauOthello();
             Joueurs joueurCourant = joueur1;
             Joueurs joueurAdverse = jouerContreIA ? ordinateur : joueur2;
             boolean partieTerminee = false;
@@ -51,7 +67,7 @@ public class Controleur {
 
             while (!partieTerminee) {
                 ihm.afficherPlateau(plateau);
-                if (Jeux.peutJouer(joueurActuel, plateau)) {
+                if (LogiqueOthello.peutJouer(joueurActuel, plateau)) {
                     AbstractMap.SimpleEntry<Integer, Integer> coup = null;
                     if (joueurCourant == ordinateur) {
                         coup = strategieIA.calculerCoup(plateau, joueurActuel, joueur1, joueur2);
@@ -63,7 +79,7 @@ public class Controleur {
                     } else {
                         String choixCoup = ihm.choixCoup(joueurCourant);
                         if (choixCoup.equalsIgnoreCase("P")) {
-                            if (!Jeux.peutJouer(joueurActuel, plateau)) {
+                            if (!LogiqueOthello.peutJouer(joueurActuel, plateau)) {
                                 ihm.afficherPlusDeCoup(joueurCourant);
                                 continue;
                             }
@@ -77,7 +93,7 @@ public class Controleur {
                             int x = choixCoup.charAt(0) - '1';
                             int y = choixCoup.charAt(2) - 'A';
                             List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = 
-                                Jeux.coupEstValide(x, y, plateau, joueurActuel);
+                                LogiqueOthello.coupEstValide(x, y, plateau, joueurActuel);
                             if (!directionsValides.isEmpty()) {
                                 coup = new AbstractMap.SimpleEntry<>(x, y);
                             } else {
@@ -94,7 +110,7 @@ public class Controleur {
                         int x = coup.getKey();
                         int y = coup.getValue();
                         List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = 
-                            Jeux.coupEstValide(x, y, plateau, joueurActuel);
+                            LogiqueOthello.coupEstValide(x, y, plateau, joueurActuel);
                         plateau.retournerPions(x, y, directionsValides, joueurActuel);
                         plateau.setCase(x, y, joueurActuel);
                     }
