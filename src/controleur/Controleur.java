@@ -1,55 +1,51 @@
 package controleur;
 
+import modele.*;
 import modele.Awale.LogiqueAwale;
 import modele.Awale.PlateauAwale;
-import modele.ChoixJeux;
-import modele.ChoixPlateau;
-import modele.Joueurs;
-import modele.Othello.PlateauOthello;
-import modele.Othello.IAStrategy;
-import modele.Othello.IARandom;
 import modele.Othello.IAMinMax;
+import modele.Othello.IARandom;
+import modele.Othello.IAStrategy;
 import modele.Othello.LogiqueOthello;
+import modele.Othello.PlateauOthello;
 import vue.Ihm;
 import java.util.AbstractMap;
-import java.util.List;
 
 public class Controleur {
     private Ihm ihm;
-    private PlateauOthello plateau;
+    private JeuStrategy strategieCourante;
     private Joueurs joueur1;
     private Joueurs joueur2;
     private Joueurs ordinateur;
     private IAStrategy strategieIA;
-    private ChoixJeux choixJeux;
-    private ChoixPlateau choixPlateau;
 
-    /**
-     * Constructeur du contrôleur, initialise l'interface utilisateur et le plateau de jeu.
-     * @param ihm L'interface utilisateur pour interagir avec le joueur.
-     */
     public Controleur(Ihm ihm) {
         this.ihm = ihm;
         this.joueur1 = new Joueurs();
         this.joueur2 = new Joueurs();
         this.ordinateur = new Joueurs();
-        this.strategieIA = null;
-        this.choixJeux = null;
-        this.choixPlateau = null;
     }
 
     public void jouer() {
-        int nbJeux = ihm.choisirJeux();
-        if (nbJeux == 1){
-            this.choixJeux = new LogiqueOthello();
-            this.choixPlateau =new PlateauOthello();
+        // Choix du jeu
+        int typeJeu = ihm.choisirJeux();
+        
+        // Configuration de la stratégie en fonction du choix
+        if (typeJeu == 1) {
+            strategieCourante = new OthelloStrategy();
+        } else {
+            strategieCourante = new AwaleStrategy();
         }
-        else if (nbJeux == 2){
-            this.choixJeux = new LogiqueAwale();
-            this.choixPlateau = new PlateauAwale();
-        }
+
+        // Configuration des joueurs
         joueur1.setNomJoueur(ihm.demanderNomJoueur(true));
         boolean jouerContreIA = ihm.estIA();
+
+        // Si on joue à l'Awalé, on force le jeu contre un humain pour le moment
+        if (typeJeu == 2) {
+            jouerContreIA = false;
+        }
+
         if (!jouerContreIA) {
             joueur2.setNomJoueur(ihm.demanderNomJoueur(false));
         } else {
@@ -58,82 +54,105 @@ public class Controleur {
             this.strategieIA = utiliserMinMax ? new IAMinMax() : new IARandom();
         }
 
+        // Configuration de la stratégie
+        strategieCourante.setJoueur1(joueur1);
+        strategieCourante.setJoueur2(joueur2);
+        strategieCourante.setIA(jouerContreIA);
+        strategieCourante.setStrategieIA(strategieIA);
+        strategieCourante.initialiserJeu();
+
+        // Boucle de jeu
         do {
-            plateau = new PlateauOthello();
-            Joueurs joueurCourant = joueur1;
-            Joueurs joueurAdverse = jouerContreIA ? ordinateur : joueur2;
-            boolean partieTerminee = false;
-            int joueurActuel = 1;
-
-            while (!partieTerminee) {
-                ihm.afficherPlateau(plateau);
-                if (LogiqueOthello.peutJouer(joueurActuel, plateau)) {
-                    AbstractMap.SimpleEntry<Integer, Integer> coup = null;
-                    if (joueurCourant == ordinateur) {
-                        coup = strategieIA.calculerCoup(plateau, joueurActuel, joueur1, joueur2);
-                        if (coup != null) {
-                            char colonne = (char)('A' + coup.getValue());
-                            int ligne = coup.getKey() + 1;
-                            ihm.afficherMessageIA("L'IA joue : " + ligne + " " + colonne);
-                        }
-                    } else {
-                        String choixCoup = ihm.choixCoup(joueurCourant);
-                        if (choixCoup.equalsIgnoreCase("P")) {
-                            if (!LogiqueOthello.peutJouer(joueurActuel, plateau)) {
-                                ihm.afficherPlusDeCoup(joueurCourant);
-                                continue;
-                            }
-                            else{
-                                ihm.afficherErreur("Il reste des coups valides");
-                                continue;
-                            }
-
-                        }
-                        try {
-                            int x = choixCoup.charAt(0) - '1';
-                            int y = choixCoup.charAt(2) - 'A';
-                            List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = 
-                                LogiqueOthello.coupEstValide(x, y, plateau, joueurActuel);
-                            if (!directionsValides.isEmpty()) {
-                                coup = new AbstractMap.SimpleEntry<>(x, y);
-                            } else {
-                                ihm.afficherErreur("Coup non valide");
-                                continue;
-                            }
-                        } catch (Exception e) {
-                            ihm.afficherErreur("Format du coup non valide");
-                            continue;
-                        }
-                    }
-
-                    if (coup != null) {
-                        int x = coup.getKey();
-                        int y = coup.getValue();
-                        List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = 
-                            LogiqueOthello.coupEstValide(x, y, plateau, joueurActuel);
-                        plateau.retournerPions(x, y, directionsValides, joueurActuel);
-                        plateau.setCase(x, y, joueurActuel);
-                    }
-                } else {
-                    ihm.afficherPlusDeCoup(joueurCourant);
-                    partieTerminee = true;
+            while (!strategieCourante.estPartieTerminee()) {
+                strategieCourante.afficherPlateau(ihm);
+                
+                if (!strategieCourante.estCoupPossible()) {
+                    ihm.afficherPlusDeCoup(strategieCourante.getJoueurCourant());
+                    strategieCourante.changerJoueur();
+                    continue;
                 }
 
-                Joueurs temp = joueurCourant;
-                joueurCourant = joueurAdverse;
-                joueurAdverse = temp;
-                joueurActuel = joueurActuel == 1 ? 2 : 1;
+                int x = -1;
+                int y = -1;
+                boolean coupValide = false;
+                int[] coup = null;
+
+                while (!coupValide) {
+                    if (strategieCourante.getJoueurCourant() == ordinateur) {
+                        // L'IA joue (uniquement pour Othello)
+                        if (strategieCourante instanceof OthelloStrategy) {
+                            OthelloStrategy othelloStrategy = (OthelloStrategy) strategieCourante;
+                            AbstractMap.SimpleEntry<Integer, Integer> meilleurCoup = strategieIA.calculerCoup(
+                                othelloStrategy.getPlateau(),
+                                2,
+                                joueur1,
+                                joueur2
+                            );
+                            if (meilleurCoup != null) {
+                                x = meilleurCoup.getKey();
+                                y = meilleurCoup.getValue();
+                                coupValide = true;
+                            } else {
+                                coupValide = false;
+                            }
+                        } else {
+                            // Pour l'Awalé, on ne devrait pas arriver ici car on force le jeu contre un humain
+                            throw new IllegalStateException("L'IA n'est pas supportée pour l'Awalé");
+                        }
+                    } else {
+                        // Le joueur humain joue
+                        String coupStr;
+                        if (strategieCourante instanceof OthelloStrategy) {
+                            coupStr = ihm.choixCoupOthello(strategieCourante.getJoueurCourant());
+                        } else {
+                            coupStr = ihm.choixCoupAwale(strategieCourante.getJoueurCourant());
+                        }
+                        
+                        // Conversion du String en coordonnées
+                        try {
+                            String[] coordonnees = coupStr.split(" ");
+                            if (strategieCourante instanceof OthelloStrategy) {
+                                // Pour Othello : format "3 D"
+                                x = Integer.parseInt(coordonnees[0]) - 1;
+                                y = coordonnees[1].toUpperCase().charAt(0) - 'A';
+                            } else {
+                                // Pour Awalé : format "3" (numéro de case)
+                                x = (strategieCourante.getJoueurCourant() == joueur1) ? 0 : 1;  // Ligne du joueur
+                                y = Integer.parseInt(coordonnees[0]) - 1;  // Case (1-6 -> 0-5)
+                            }
+                            coupValide = strategieCourante.estCoupValide(x, y);
+                            if (!coupValide) {
+                                ihm.afficherErreur("Coup invalide ! Veuillez réessayer.");
+                            }
+                        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                            if (strategieCourante instanceof OthelloStrategy) {
+                                ihm.afficherErreur("Format de coup invalide ! Veuillez entrer un nombre entre 1 et 8 suivi d'une lettre entre A et H, séparés par un espace (ex: 3 D).");
+                            } else {
+                                ihm.afficherErreur("Format de coup invalide ! Veuillez entrer un nombre entre 1 et 6.");
+                            }
+                            coupValide = false;
+                        }
+                    }
+                }
+
+                strategieCourante.jouerCoup(x, y);
             }
 
-            String gagnant = plateau.joueurGagnant(joueur1, joueur2);
-            if (gagnant.equals(joueur1.getJoueur())) {
-                joueur1.setNombreVictoires(joueur1.getNombreVictoires() + 1);
-            } else if (gagnant.equals(joueur2.getJoueur())) {
-                joueur2.setNombreVictoires(joueur2.getNombreVictoires() + 1);
+            strategieCourante.afficherPlateau(ihm);
+            Joueurs gagnant = strategieCourante.getGagnant();
+            if (gagnant != null) {
+                ihm.Gagnant(gagnant.getJoueur());
+                if (gagnant == joueur1) {
+                    joueur1.setNombreVictoires(joueur1.getNombreVictoires() + 1);
+                } else if (gagnant == joueur2) {
+                    joueur2.setNombreVictoires(joueur2.getNombreVictoires() + 1);
+                }
+            } else {
+                ihm.Gagnant("Match nul !");
             }
-            ihm.Gagnant(gagnant);
-            ihm.afficherScoreFinal(joueur1.getJoueur(), joueur1.getNombreVictoires(), 
-            joueur2.getJoueur(), joueur2.getNombreVictoires());
+            
+            ihm.afficherScoreFinal(joueur1.getJoueur(), joueur1.getNombreVictoires(),
+                    joueur2.getJoueur(), joueur2.getNombreVictoires());
         } while (ihm.demanderRejouer());
     }
 }

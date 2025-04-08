@@ -1,33 +1,24 @@
 package modele.Othello;
 
-import modele.ChoixPlateau;
+import modele.Plateau;
 import modele.Joueurs;
 
 import java.util.AbstractMap;
 import java.util.List;
 
-public class PlateauOthello implements ChoixPlateau {
-    private static final int taillePlateau = 8; // Taille fixe du plateau
-    private int[][] plateau; // Instance propre à chaque jeu
+/**
+ * Classe représentant le plateau de jeu d'Othello.
+ */
+public class PlateauOthello extends Plateau {
+    private int[][] plateau;
 
     /**
      * Constructeur : Initialise un plateau vide avec les pions de départ.
      */
     public PlateauOthello() {
-        plateau = new int[taillePlateau][taillePlateau];  // Crée un tableau 2D pour le plateau de jeu
-
-        // Initialisation du plateau à vide
-        for (int i = 0; i < taillePlateau; i++) {
-            for (int j = 0; j < taillePlateau; j++) {
-                plateau[i][j] = 0;  // Initialise chaque case à 0 (case vide)
-            }
-        }
-
-        // Placement des 4 pions initiaux au centre
-        setCase(taillePlateau / 2 - 1, taillePlateau / 2 - 1, 2);  // Pion blanc (joueur 2)
-        setCase(taillePlateau / 2 - 1, taillePlateau / 2, 1);  // Pion noir (joueur 1)
-        setCase(taillePlateau / 2, taillePlateau / 2 - 1, 1);  // Pion noir (joueur 1)
-        setCase(taillePlateau / 2, taillePlateau / 2, 2);  // Pion blanc (joueur 2)
+        super(TAILLE_PLATEAU_OTHELLO);
+        this.plateau = new int[TAILLE_PLATEAU_OTHELLO][TAILLE_PLATEAU_OTHELLO];
+        initialiserPlateau();
     }
 
     /**
@@ -35,20 +26,24 @@ public class PlateauOthello implements ChoixPlateau {
      * @param autre Le plateau à copier.
      */
     public PlateauOthello(PlateauOthello autre) {
-        plateau = new int[taillePlateau][taillePlateau];
-        for (int i = 0; i < taillePlateau; i++) {
-            for (int j = 0; j < taillePlateau; j++) {
-                plateau[i][j] = autre.getCase(i, j);
-            }
+        super(TAILLE_PLATEAU_OTHELLO);
+        this.plateau = new int[TAILLE_PLATEAU_OTHELLO][TAILLE_PLATEAU_OTHELLO];
+        for (int i = 0; i < TAILLE_PLATEAU_OTHELLO; i++) {
+            System.arraycopy(autre.plateau[i], 0, this.plateau[i], 0, TAILLE_PLATEAU_OTHELLO);
         }
     }
 
-    /**
-     * Retourne la taille du plateau.
-     * @return La taille du plateau (8x8).
-     */
-    public static int getTaillePlateau() {
-        return taillePlateau;  // Retourne la taille fixe du plateau
+    private void initialiserPlateau() {
+        for (int i = 0; i < TAILLE_PLATEAU_OTHELLO; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_OTHELLO; j++) {
+                plateau[i][j] = 0;
+            }
+        }
+        // Placement des pions initiaux
+        plateau[TAILLE_PLATEAU_OTHELLO/2 - 1][TAILLE_PLATEAU_OTHELLO/2 - 1] = 2;  // Pion blanc (joueur 2)
+        plateau[TAILLE_PLATEAU_OTHELLO/2 - 1][TAILLE_PLATEAU_OTHELLO/2] = 1;      // Pion noir (joueur 1)
+        plateau[TAILLE_PLATEAU_OTHELLO/2][TAILLE_PLATEAU_OTHELLO/2 - 1] = 1;      // Pion noir (joueur 1)
+        plateau[TAILLE_PLATEAU_OTHELLO/2][TAILLE_PLATEAU_OTHELLO/2] = 2;          // Pion blanc (joueur 2)
     }
 
     /**
@@ -56,10 +51,13 @@ public class PlateauOthello implements ChoixPlateau {
      * @param x La ligne de la case à modifier.
      * @param y La colonne de la case à modifier.
      * @param valeur La nouvelle valeur à assigner à la case (1 ou 2).
+     * @throws IllegalArgumentException Si les coordonnées sont invalides.
      */
-    @Override
     public void setCase(int x, int y, int valeur) {
-        plateau[x][y] = valeur;  // Modifie la valeur de la case spécifiée par (x, y)
+        if (x < 0 || x >= TAILLE_PLATEAU_OTHELLO || y < 0 || y >= TAILLE_PLATEAU_OTHELLO) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + x + ", " + y + ")");
+        }
+        plateau[x][y] = valeur;
     }
 
     /**
@@ -67,10 +65,13 @@ public class PlateauOthello implements ChoixPlateau {
      * @param x La ligne de la case à consulter.
      * @param y La colonne de la case à consulter.
      * @return La valeur de la case (0 = vide, 1 = joueur 1, 2 = joueur 2).
+     * @throws IllegalArgumentException Si les coordonnées sont invalides.
      */
-    @Override
     public int getCase(int x, int y) {
-        return plateau[x][y];  // Retourne la valeur de la case spécifiée par (x, y)
+        if (x < 0 || x >= TAILLE_PLATEAU_OTHELLO || y < 0 || y >= TAILLE_PLATEAU_OTHELLO) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + x + ", " + y + ")");
+        }
+        return plateau[x][y];
     }
 
     /**
@@ -99,18 +100,14 @@ public class PlateauOthello implements ChoixPlateau {
      */
     public void retournerPions(int x, int y, List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides, int joueurCourant) {
         for (AbstractMap.SimpleEntry<Integer, Integer> direction : directionsValides) {
-            int ligne = direction.getKey();
-            int colonne = direction.getValue();
-            int ligneCourante = x + ligne;
-            int colonneCourante = y + colonne;
-
-            // Tant que la case appartient à l'adversaire et est dans les limites du plateau, on retourne les pions
-            while (ligneCourante >= 0 && ligneCourante < taillePlateau && 
-                colonneCourante >= 0 && colonneCourante < taillePlateau && 
-                getCase(ligneCourante, colonneCourante) == Joueurs.joueurSuivant(joueurCourant)) {
-                setCase(ligneCourante, colonneCourante, joueurCourant);  // Retourne le pion dans cette direction
-                ligneCourante += ligne;  // Avance dans la direction
-                colonneCourante += colonne;  // Avance dans la direction
+            int dx = direction.getKey();
+            int dy = direction.getValue();
+            int i = x + dx;
+            int j = y + dy;
+            while (i >= 0 && i < TAILLE_PLATEAU_OTHELLO && j >= 0 && j < TAILLE_PLATEAU_OTHELLO && plateau[i][j] != joueurCourant && plateau[i][j] != 0) {
+                plateau[i][j] = joueurCourant;
+                i += dx;
+                j += dy;
             }
         }
     }
@@ -119,31 +116,32 @@ public class PlateauOthello implements ChoixPlateau {
      * Détermine le gagnant en comptant les pions sur le plateau.
      * @return Le nom du joueur gagnant ou "ex aequo" en cas d'égalité.
      */
-    @Override
     public String joueurGagnant(Joueurs joueur1, Joueurs joueur2) {
-        int nombrePionsJoueur1 = 0;
-        int nombrePionsJoueur2 = 0;
-
-        // Comptage des pions sur le plateau
-        for (int i = 0; i < taillePlateau; i++) {
-            for (int j = 0; j < taillePlateau; j++) {
+        int score1 = 0;
+        int score2 = 0;
+        for (int i = 0; i < TAILLE_PLATEAU_OTHELLO; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_OTHELLO; j++) {
                 if (plateau[i][j] == 1) {
-                    nombrePionsJoueur1++;  // Comptabilise les pions du joueur 1
+                    score1++;
                 } else if (plateau[i][j] == 2) {
-                    nombrePionsJoueur2++;  // Comptabilise les pions du joueur 2
+                    score2++;
                 }
             }
         }
-
-        // Détermination du gagnant
-        if (nombrePionsJoueur1 > nombrePionsJoueur2) {
-            return joueur1.getJoueur();  // Retourne le nom du joueur 1 s'il a plus de pions
-        } else if (nombrePionsJoueur2 > nombrePionsJoueur1) {
-            return joueur2.getJoueur();  // Retourne le nom du joueur 2 s'il a plus de pions
-        } else {
-            return "ex aequo";  // Retourne "ex aequo" en cas d'égalité
+        if (score1 > score2) {
+            return joueur1.getJoueur();
+        } else if (score2 > score1) {
+            return joueur2.getJoueur();
         }
+        return "Match nul";
     }
 
-
+    public void afficher() {
+        for (int i = 0; i < TAILLE_PLATEAU_OTHELLO; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_OTHELLO; j++) {
+                System.out.print(plateau[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }

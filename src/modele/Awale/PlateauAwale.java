@@ -1,48 +1,181 @@
 package modele.Awale;
 
-import modele.ChoixPlateau;
+import modele.Plateau;
 import modele.Joueurs;
 
-public class PlateauAwale implements ChoixPlateau {
-
+/**
+ * Classe représentant le plateau de jeu d'Awalé.
+ */
+public class PlateauAwale extends Plateau {
     private int[][] plateau;
+    private int grenierJoueur1;
+    private int grenierJoueur2;
 
+    /**
+     * Constructeur du plateau d'Awalé.
+     */
     public PlateauAwale() {
-        plateau = new int[7][7];  // Crée un tableau 2D pour le plateau de jeu
+        super(TAILLE_PLATEAU_AWALE);
+        this.plateau = new int[2][TAILLE_PLATEAU_AWALE];  // 2 rangées de 6 trous
+        this.grenierJoueur1 = 0;
+        this.grenierJoueur2 = 0;
+        initialiserPlateau();
+    }
 
-        // Initialisation du plateau
-        for (int i = 1; i < 7; i++) {
-            for (int j = 1; j < 7; j++) {
-            plateau[i][j] = 4;  // Initialise chaque case à 4
+    private void initialiserPlateau() {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_AWALE; j++) {
+                plateau[i][j] = 4;
             }
         }
-        // met les greniers à 0
-        plateau[0][0] = 0; //côté joueur 1
-        plateau[0][1] = 0; //côté joueur 2
     }
-    @Override
-    public void setCase(int x, int y,int valeur) {plateau[x][y] = valeur;}
 
-    @Override
-    public int getCase(int x, int y) {return plateau[x][y];}
-    @Override
-    public String joueurGagnant(Joueurs joueur1, Joueurs joueur2) {
-        int nombreGrainesJoueur1 = getCase(0,0);
-        int nombreGrainesJoueur2 = getCase(0,1);
+    /**
+     * Constructeur de copie.
+     * @param autre Le plateau à copier.
+     */
+    public PlateauAwale(PlateauAwale autre) {
+        super(TAILLE_PLATEAU_AWALE);
+        this.plateau = new int[2][TAILLE_PLATEAU_AWALE];
+        this.grenierJoueur1 = autre.grenierJoueur1;
+        this.grenierJoueur2 = autre.grenierJoueur2;
 
-        // Détermination du gagnant
-        if (nombreGrainesJoueur1 > nombreGrainesJoueur2) {
-            return joueur1.getJoueur();  // Retourne le nom du joueur 1 s'il a plus de pions
-        } else if (nombreGrainesJoueur2 > nombreGrainesJoueur1) {
-            return joueur2.getJoueur();  // Retourne le nom du joueur 2 s'il a plus de pions
-        } else {
-            return "ex aequo";  // Retourne "ex aequo" en cas d'égalité
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_AWALE; j++) {
+                this.plateau[i][j] = autre.plateau[i][j];
+            }
         }
     }
 
-    public void rafle(int x, int y,int joueurcourant) {
-
+    /**
+     * Modifie la valeur d'une case du plateau.
+     * @param x La ligne de la case (0 ou 1).
+     * @param y La colonne de la case (0-5).
+     * @param valeur La nouvelle valeur de la case.
+     * @throws IllegalArgumentException Si les coordonnées sont invalides.
+     */
+    public void setCase(int x, int y, int valeur) {
+        if (x < 0 || x >= 2 || y < 0 || y >= TAILLE_PLATEAU_AWALE) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + x + ", " + y + ")");
+        }
+        plateau[x][y] = valeur;
     }
 
+    /**
+     * Retourne la valeur d'une case du plateau.
+     * @param x La ligne de la case (0 ou 1).
+     * @param y La colonne de la case (0-5).
+     * @return La valeur de la case.
+     * @throws IllegalArgumentException Si les coordonnées sont invalides.
+     */
+    public int getCase(int x, int y) {
+        if (x < 0 || x >= 2 || y < 0 || y >= TAILLE_PLATEAU_AWALE) {
+            throw new IllegalArgumentException("Coordonnées invalides : (" + x + ", " + y + ")");
+        }
+        return plateau[x][y];
+    }
 
+    @Override
+    public void afficher() {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < TAILLE_PLATEAU_AWALE; j++) {
+                System.out.print(plateau[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("Grenier Joueur 1: " + grenierJoueur1);
+        System.out.println("Grenier Joueur 2: " + grenierJoueur2);
+    }
+
+    public int getGrenierJoueur1() {
+        return grenierJoueur1;
+    }
+
+    public int getGrenierJoueur2() {
+        return grenierJoueur2;
+    }
+
+    public void setGrenierJoueur1(int valeur) {
+        this.grenierJoueur1 = valeur;
+    }
+
+    public void setGrenierJoueur2(int valeur) {
+        this.grenierJoueur2 = valeur;
+    }
+
+    public void ajouterAuGrenier(int joueur, int nbGraines) {
+        if (joueur == 1) {
+            grenierJoueur1 += nbGraines;
+        } else if (joueur == 2) {
+            grenierJoueur2 += nbGraines;
+        }
+    }
+
+    @Override
+    public String joueurGagnant(Joueurs joueur1, Joueurs joueur2) {
+        // Ajoute les graines restantes au joueur correspondant
+        if (!LogiqueAwale.peutJouer(1, this)) {
+            // Le joueur 1 ne peut plus jouer, ajouter ses graines à l'adversaire
+            for (int j = 0; j < TAILLE_PLATEAU_AWALE; j++) {
+                grenierJoueur2 += plateau[1][j];
+                plateau[1][j] = 0;
+            }
+        } else if (!LogiqueAwale.peutJouer(2, this)) {
+            // Le joueur 2 ne peut plus jouer, ajouter ses graines à l'adversaire
+            for (int j = 0; j < TAILLE_PLATEAU_AWALE; j++) {
+                grenierJoueur1 += plateau[0][j];
+                plateau[0][j] = 0;
+            }
+        }
+
+        // Détermine le gagnant en fonction des greniers
+        if (grenierJoueur1 > grenierJoueur2) {
+            return joueur1.getJoueur();
+        } else if (grenierJoueur2 > grenierJoueur1) {
+            return joueur2.getJoueur();
+        } else {
+            return "ex aequo";
+        }
+    }
+
+    /**
+     * Effectue une rafle des graines à partir d'une position donnée.
+     * @param ligne La ligne de la case.
+     * @param colonne La colonne de la case.
+     * @param joueur Le joueur qui capture (1 ou 2).
+     * @return Le nombre de graines capturées.
+     */
+    public int rafle(int ligne, int colonne, int joueur) {
+        int grainesCapturees = 0;
+        int position = colonne;
+
+        // Capture les graines en reculant
+        while (position >= 0) {
+            int valeurCase = getCase(ligne, position);
+            if (valeurCase == 2 || valeurCase == 3) {
+                grainesCapturees += valeurCase;
+                setCase(ligne, position, 0);
+                position--;
+            } else {
+                break;
+            }
+        }
+
+        return grainesCapturees;
+    }
+
+    /**
+     * Retourne le symbole pour représenter une case du plateau.
+     * @param x La ligne de la case.
+     * @param y La colonne de la case.
+     * @return La représentation textuelle de la case.
+     */
+    public String getSymboleCase(int x, int y) {
+        int valeur = getCase(x, y);
+        return "(" + valeur + ")";
+    }
+
+    public static int getTaillePlateau() {
+        return Plateau.getTaillePlateau();
+    }
 }

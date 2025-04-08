@@ -1,5 +1,6 @@
 package vue;
 
+import modele.Awale.PlateauAwale;
 import modele.Joueurs;
 import modele.Othello.PlateauOthello;
 
@@ -55,7 +56,7 @@ public class Ihm {
      * @param joueur Le numéro du joueur qui doit jouer.
      * @return Le coup saisi par le joueur sous forme de chaîne (ex : "3 D" ou "P").
      */
-    public String choixCoup(Joueurs joueur) {
+    public String choixCoupOthello(Joueurs joueur) {
         // Affiche un message demandant à l'utilisateur de saisir son coup ou de passer son tour.
         System.out.println(joueur.getJoueur() + " à vous de jouer. Saisir une ligne entre 1 et 8 suivie d'une lettre entre A et H (ex : 3 D) ou P pour passer son tour.");
         // Récupère l'entrée du joueur pour le coup.
@@ -66,7 +67,7 @@ public class Ihm {
      * Affiche un message d'erreur.
      * @param message Le message d'erreur à afficher.
      */
-    public static void afficherErreur(String message) {
+    public void afficherErreur(String message) {
         System.out.println("Erreur : " + message);
     }
 
@@ -87,7 +88,7 @@ public class Ihm {
      * Informe qu'un joueur n'a plus de coup possible.
      * @param joueur Le joueur qui n'a plus de coup à jouer.
      */
-    public static void afficherPlusDeCoup(Joueurs joueur) {
+    public void afficherPlusDeCoup(Joueurs joueur) {
         String nomJoueur = joueur.getJoueur();
         System.out.println(nomJoueur + " n'a plus de coup possible.");
     }
@@ -143,7 +144,53 @@ public class Ihm {
         System.out.println("A quel jeux souhaitez vous jouer ? ");
         System.out.println("1 - Jouer à l'Othello");
         System.out.println("2 - Jouer à l'Awale");
-        return scanner.nextInt();
+        int choix = scanner.nextInt();
+        scanner.nextLine(); // Consomme le retour à la ligne
+        return choix;
+    }
+
+    // Ajouter cette méthode à la classe Ihm
+    /**
+     * Affiche le plateau d'Awalé.
+     * @param plateau Le plateau à afficher.
+     */
+    public void afficherPlateau(PlateauAwale plateau) {
+        // Ligne supérieure avec les numéros des cases du joueur 2
+        System.out.println("\n             6    5    4    3    2    1");
+        System.out.println("    ╔═════╦════╦════╦════╦════╦════╦════╦═════╗");
+
+        // Cases du joueur 2
+        System.out.print("    ║     ║");
+        for (int j = 5; j >= 0; j--) {
+            int graines = plateau.getCase(1, j);
+            System.out.print(String.format(" %2d ║", graines));
+        }
+        System.out.println("     ║");
+
+        // Ligne de séparation avec nom des joueurs
+        System.out.println("J2  ║  "+plateau.getGrenierJoueur2()+"  ╠════╬════╬════╬════╬════╬════╣  "+ plateau.getGrenierJoueur1()+"  ║  J1");
+
+        // Cases du joueur 1
+        System.out.print("    ║     ║");
+        for (int j = 0; j < 6; j++) {
+            int graines = plateau.getCase(0, j);
+            System.out.print(String.format(" %2d ║", graines));
+        }
+        System.out.println("     ║");
+
+        // Ligne inférieure
+        System.out.println("    ╚═════╩════╩════╩════╩════╩════╩════╩═════╝");
+        System.out.println("             1    2    3    4    5    6\n");
+    }
+
+    /**
+     * Demande à un joueur de choisir un coup pour l'Awalé.
+     * @param joueur Le joueur qui doit jouer.
+     * @return Le numéro de la case choisie (1-6).
+     */
+    public String choixCoupAwale(Joueurs joueur) {
+        System.out.println(joueur.getJoueur() + " à vous de jouer. Choisissez une case (1-6) ou P pour passer votre tour.");
+        return scanner.nextLine();
     }
 
 }

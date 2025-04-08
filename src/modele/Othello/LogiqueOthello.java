@@ -1,19 +1,18 @@
 package modele.Othello;
 
-import modele.ChoixJeux;
 import modele.Joueurs;
 
-import java.util.AbstractMap.SimpleEntry;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogiqueOthello implements ChoixJeux {
+public class LogiqueOthello {
     // Définit les directions possibles autour d'une case (les 8 directions autour d'une case)
-    private static SimpleEntry<Integer, Integer>[] directionsPossibles = new SimpleEntry[]{
-            new SimpleEntry<>(0,1), new SimpleEntry<>(0,-1),
-            new SimpleEntry<>(1,0), new SimpleEntry<>(1,1),
-            new SimpleEntry<>(1,-1), new SimpleEntry<>(-1,0),
-            new SimpleEntry<>(-1,1), new SimpleEntry<>(-1,-1),
+    private static AbstractMap.SimpleEntry<Integer, Integer>[] directionsPossibles = new AbstractMap.SimpleEntry[]{
+            new AbstractMap.SimpleEntry<>(0,1), new AbstractMap.SimpleEntry<>(0,-1),
+            new AbstractMap.SimpleEntry<>(1,0), new AbstractMap.SimpleEntry<>(1,1),
+            new AbstractMap.SimpleEntry<>(1,-1), new AbstractMap.SimpleEntry<>(-1,0),
+            new AbstractMap.SimpleEntry<>(-1,1), new AbstractMap.SimpleEntry<>(-1,-1),
     };
     private static int taillePlateau = PlateauOthello.getTaillePlateau();  // Taille du plateau
 
@@ -37,8 +36,8 @@ public class LogiqueOthello implements ChoixJeux {
      * @param joueurCourant Le joueur qui joue (1 ou 2).
      * @return Liste des directions valides où le coup peut être effectué.
      */
-    public static List<SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, PlateauOthello plateau, int joueurCourant){
-        List<SimpleEntry<Integer, Integer>> directionsValides = new ArrayList<>();
+    public static List<AbstractMap.SimpleEntry<Integer, Integer>> coupEstValide(int x, int y, PlateauOthello plateau, int joueurCourant){
+        List<AbstractMap.SimpleEntry<Integer, Integer>> directionsValides = new ArrayList<>();
 
         // Vérification si les coordonnées sont valides
         if (x < 0 || x >= taillePlateau || y < 0 || y >= taillePlateau) {
@@ -50,7 +49,7 @@ public class LogiqueOthello implements ChoixJeux {
         }
 
         // Vérification dans les 8 directions possibles autour de la case
-        for (SimpleEntry<Integer, Integer> direction : directionsPossibles) {
+        for (AbstractMap.SimpleEntry<Integer, Integer> direction : directionsPossibles) {
             int ligne = direction.getKey();
             int colonne = direction.getValue();
             int ligneCourante = x + ligne;
@@ -67,7 +66,7 @@ public class LogiqueOthello implements ChoixJeux {
                 if (valeurCase == joueurCourant) {
                     // Si on rencontre un pion du joueur courant et que des pions adverses ont été trouvés
                     if (aTrouveAdversaire) {
-                        directionsValides.add(new SimpleEntry<>(ligne, colonne));  // Ajoute la direction valide
+                        directionsValides.add(new AbstractMap.SimpleEntry<>(ligne, colonne));  // Ajoute la direction valide
                     } else {
                         break;  // Arrête si aucun pion adverse n'a été trouvé avant
                     }
@@ -105,12 +104,12 @@ public class LogiqueOthello implements ChoixJeux {
      * @param plateau L'état actuel du plateau.
      * @return Liste des coordonnées (x,y) des coups possibles.
      */
-    public static List<SimpleEntry<Integer,Integer>> coupsPossibles(int joueurCourant, PlateauOthello plateau) {
-        List<SimpleEntry<Integer,Integer>> coupsPossibles = new ArrayList<>();
+    public static List<AbstractMap.SimpleEntry<Integer,Integer>> coupsPossibles(int joueurCourant, PlateauOthello plateau) {
+        List<AbstractMap.SimpleEntry<Integer,Integer>> coupsPossibles = new ArrayList<>();
         for (int i = 0; i < taillePlateau; i++) {
             for (int j = 0; j < taillePlateau; j++) {
                 if (coupEstValide(i, j, plateau, joueurCourant).size() > 0) {
-                    coupsPossibles.add(new SimpleEntry<>(i, j));
+                    coupsPossibles.add(new AbstractMap.SimpleEntry<>(i, j));
                 }
             }
         }
