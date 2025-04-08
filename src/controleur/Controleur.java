@@ -10,7 +10,11 @@ import modele.Othello.LogiqueOthello;
 import modele.Othello.PlateauOthello;
 import vue.Ihm;
 import java.util.AbstractMap;
-
+/**
+ * Contrôleur principal de l'application.
+ * Gère le déroulement global du jeu en fonction de la stratégie choisie (Othello ou Awalé),
+ * l'initialisation des joueurs, la boucle de jeu, et la communication avec l'IHM.
+ */
 public class Controleur {
     private Ihm ihm;
     private JeuStrategy strategieCourante;
@@ -19,12 +23,24 @@ public class Controleur {
     private Joueurs ordinateur;
     private IAStrategy strategieIA;
 
+
+    /**
+     * Constructeur du contrôleur.
+     * @param ihm l'interface homme-machine utilisée pour interagir avec l'utilisateur.
+     */
+
     public Controleur(Ihm ihm) {
         this.ihm = ihm;
         this.joueur1 = new Joueurs();
         this.joueur2 = new Joueurs();
         this.ordinateur = new Joueurs();
     }
+
+
+    /**
+     * Lance la boucle de jeu principale, gère les entrées utilisateur,
+     * les coups de l'IA et la logique de victoire/fin de partie.
+     */
 
     public void jouer() {
         // Choix du jeu

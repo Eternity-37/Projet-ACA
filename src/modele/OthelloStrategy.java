@@ -6,7 +6,10 @@ import modele.Othello.PlateauOthello;
 import vue.Ihm;
 import java.util.List;
 import java.util.AbstractMap;
-
+/**
+ * Implémentation de la stratégie du jeu Othello.
+ * Gère la logique de jeu, les coups, les changements de joueur et l'état de la partie.
+ */
 public class OthelloStrategy implements JeuStrategy<PlateauOthello> {
     private PlateauOthello plateau;
     private Joueurs joueurCourant;
@@ -15,7 +18,10 @@ public class OthelloStrategy implements JeuStrategy<PlateauOthello> {
     private Joueurs ordinateur;
     private boolean jouerContreIA;
     private IAStrategy strategieIA;
-
+    /**
+     * Constructeur de la stratégie Othello.
+     * Initialise le plateau et les joueurs par défaut.
+     */
     public OthelloStrategy() {
         this.plateau = new PlateauOthello();
         this.joueur1 = new Joueurs();
