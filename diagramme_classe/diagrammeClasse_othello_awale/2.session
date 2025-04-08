@@ -1,0 +1,27 @@
+window_sizes 3440 1417 249 3186 1317 54
+
+diagrams
+  active  classdiagram_ref 128130 // classe_othello_Awale
+    3186 1317 108 A4 0 0
+end
+show_stereotypes
+selected 
+package_ref 129 // diagrammeClasse_othello
+open
+  class_ref 128258 // Ihm
+  class_ref 128386 // Controleur
+  class_ref 128514 // IAMinMax
+  class_ref 128642 // IARandom
+  class_ref 128770 // IAStrategy
+  class_ref 128898 // Jeux
+  class_ref 129026 // Joueurs
+  class_ref 129154 // Plateau
+  class_ref 135810 // LogiqueAwale
+  class_ref 135938 // PlateauAwale
+  class_ref 136066 // LogiqueOthello
+  class_ref 136194 // PlateauOthello
+  class_ref 136322 // AwaleStrategy
+  class_ref 136450 // JeuStrategy
+  class_ref 136578 // OthelloStrategy
+end
+end

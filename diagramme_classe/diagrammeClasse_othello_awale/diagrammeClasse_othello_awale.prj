@@ -1,0 +1,1870 @@
+format 224
+"diagrammeClasse_othello"
+  revision 4
+  modified_by 2 "Evann"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  classcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 96
+  font_size 8
+  diagram_format A4
+
+  image_root_dir ""
+
+
+  mark_for_import
+  
+  classview 128130 "diagramme de classe"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128130 "classe_othello_Awale"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A4
+    end
+
+    class 128258 "Ihm"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128258 "demandernomjoueurs"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128386 "choixCoupOthello"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128514 "afficherErreur"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128770 "afficherPlateau"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128898 "Gagnant"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129026 "afficherPlusDeCoup"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129154 "afficherScoreFinal"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129282 "demanderRejouer"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129410 "estIA"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129538 "choisirIAMinMax"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129666 "afficherMessageIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 129666 // <association>
+	relation_ref 129410 // <association>
+      end
+
+      operation 148610 "choisirJeux"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 148738 "choixCoupAwale"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128386 "Controleur"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128130 "Ihm"
+	public explicit_type "ihm"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128258 "strategieCourante"
+	private type class_ref 136450 // JeuStrategy
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128386 "joueur1"
+	private explicit_type "Joueurs"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128514 "joueur2"
+	private explicit_type "Joueurs"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128642 "ordinateur"
+	private explicit_type "Joueurs"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128770 "strategieIA"
+	private explicit_type "IAStrategy"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128642 "jouer"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 132994 "Controleur"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 129538 // <association>
+	relation 129410 ----
+	  a role_name "" private
+	    classrelation_ref 129538 // <association>
+	  b role_name "" private
+	    classrelation_ref 129666 // <association>
+      end
+
+      classrelation 129794 // <association>
+	relation 129538 ----
+	  a role_name "" private
+	    classrelation_ref 129794 // <association>
+	  b role_name "" private
+	    classrelation_ref 129922 // <association>
+      end
+
+      classrelation 130050 // <association>
+	relation 129666 ----
+	  a role_name "" private
+	    classrelation_ref 130050 // <association>
+	  b role_name "" private
+	    classrelation_ref 130178 // <association>
+      end
+
+      classrelation 130306 // <dependency>
+	relation 129794 -_->
+	  a public
+	    classrelation_ref 130306 // <dependency>
+	  b parent class_ref 128770 // IAStrategy
+      end
+
+      classrelation 137602 // <association>
+	relation 136834 ----
+	  a role_name "" private
+	    classrelation_ref 137602 // <association>
+	  b role_name "" private
+	    classrelation_ref 137730 // <association>
+      end
+
+      classrelation 144258 // <unidirectional association>
+	relation 143362 --->
+	  a role_name "" private
+	    classrelation_ref 144258 // <unidirectional association>
+	  b parent class_ref 128258 // Ihm
+      end
+
+      classrelation 144386 // <unidirectional association>
+	relation 143490 --->
+	  a role_name "" private
+	    classrelation_ref 144386 // <unidirectional association>
+	  b parent class_ref 129026 // Joueurs
+      end
+
+      classrelation 144514 // <unidirectional association>
+	relation 143618 --->
+	  a role_name "" private
+	    classrelation_ref 144514 // <unidirectional association>
+	  b parent class_ref 136322 // AwaleStrategy
+      end
+
+      classrelation 144642 // <unidirectional association>
+	relation 143746 --->
+	  a role_name "" private
+	    classrelation_ref 144642 // <unidirectional association>
+	  b parent class_ref 136578 // OthelloStrategy
+      end
+
+      classrelation 144770 // <unidirectional association>
+	relation 143874 --->
+	  a role_name "" private
+	    classrelation_ref 144770 // <unidirectional association>
+	  b parent class_ref 128898 // Jeux
+      end
+
+      classrelation 144898 // <unidirectional association>
+	relation 144002 --->
+	  a role_name "" private
+	    classrelation_ref 144898 // <unidirectional association>
+	  b parent class_ref 128770 // IAStrategy
+      end
+
+      classrelation 145026 // <unidirectional association>
+	relation 144130 --->
+	  a role_name "" private
+	    classrelation_ref 145026 // <unidirectional association>
+	  b parent class_ref 129154 // Plateau
+      end
+
+      classrelation 145154 // <unidirectional association>
+	relation 144258 --->
+	  a role_name "" private
+	    classrelation_ref 145154 // <unidirectional association>
+	  b parent class_ref 136450 // JeuStrategy
+      end
+    end
+
+    class 128514 "IAMinMax"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 129794 "minimax"
+	cpp_virtual private explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129922 "calculerCoup"
+	abstract cpp_virtual public explicit_return_type "AbstractMap.SimpleEntry<Integer,Integer>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 130946 // <directional aggregation>
+	relation 130178 o-->
+	  a role_name "" private
+	    classrelation_ref 130946 // <directional aggregation>
+	  b parent class_ref 128770 // IAStrategy
+      end
+
+      operation 139522 "evaluationPlateau"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      attribute 135810 "taillePlateau"
+	class_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128642 "IARandom"
+      abstract visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 130050 "calculerCoup"
+	abstract cpp_virtual public explicit_return_type "AbstractMap.SimpleEntry<Integer,Integer>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 131074 // <directional aggregation>
+	relation 130306 o-->
+	  a role_name "" private
+	    classrelation_ref 131074 // <directional aggregation>
+	  b parent class_ref 128770 // IAStrategy
+      end
+    end
+
+    class 128770 "IAStrategy"
+      abstract visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 130178 "calculerCoup"
+	abstract cpp_virtual public explicit_return_type "AbstractMap.SimpleEntry<Integer,Integer>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 145794 // <realization>
+	relation 144898 -_-|>
+	  a public
+	    classrelation_ref 145794 // <realization>
+	  b parent class_ref 128642 // IARandom
+      end
+
+      classrelation 145922 // <realization>
+	relation 145026 -_-|>
+	  a public
+	    classrelation_ref 145922 // <realization>
+	  b parent class_ref 128514 // IAMinMax
+      end
+    end
+
+    class 128898 "Jeux"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 130306 "directionPossibles"
+	class_operation private explicit_return_type "SimpleEntry<Integer, Integer>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 130434 "taillePlateau"
+	class_operation private explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 130562 "partieFinie"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 130690 "coupEstValide"
+	class_operation public explicit_return_type "List<SimpleEntry<Integer, Integer>>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 130818 "peutJouer"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 130946 "coupsPossibles"
+	class_operation public explicit_return_type "List<SimpleEntry<Integer,Integer>>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 137730 // <association>
+	relation_ref 136834 // <association>
+      end
+
+      classrelation 146562 // <generalisation>
+	relation 145666 ---|>
+	  a public
+	    classrelation_ref 146562 // <generalisation>
+	  b parent class_ref 135810 // LogiqueAwale
+      end
+
+      classrelation 146690 // <generalisation>
+	relation 145794 ---|>
+	  a public
+	    classrelation_ref 146690 // <generalisation>
+	  b parent class_ref 136066 // LogiqueOthello
+      end
+    end
+
+    class 129026 "Joueurs"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128898 "nomJoueur"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129026 "nombreVictoires"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 131074 "setNomJoueur"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 131330 "getJoueur"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 131458 "getNombreVictoires"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 131586 "setNombreVictoires"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 131714 "joueurSuivant"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 129922 // <association>
+	relation_ref 129538 // <association>
+      end
+    end
+
+    class 129154 "Plateau"
+      abstract visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 129154 "taillePlateau"
+	class_attribute protected explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129282 "TAILLE_PLATEAU_OTHELLO"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 131842 "Plateau"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 131970 "getTaillePlateau"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 132226 "setCase"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 132354 "getCase"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 132738 "joueurGagnant"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 130178 // <association>
+	relation_ref 129666 // <association>
+      end
+
+      attribute 138370 "TAILLE_PLATEAU_AWALE"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 146050 // <generalisation>
+	relation 145154 ---|>
+	  a public
+	    classrelation_ref 146050 // <generalisation>
+	  b parent class_ref 135938 // PlateauAwale
+      end
+
+      classrelation 146178 // <generalisation>
+	relation 145282 ---|>
+	  a public
+	    classrelation_ref 146178 // <generalisation>
+	  b parent class_ref 136194 // PlateauOthello
+      end
+    end
+
+    class 135810 "LogiqueAwale"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 139650 "partieFinie"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 139778 "peutJouer"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 139906 "coupsPossibles"
+	class_operation public explicit_return_type "List<AbstractMap.SimpleEntry<Integer, Integer>>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140034 "coupsAffameAdversaire"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140162 "jouerCoup"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 135938 "PlateauAwale"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 135938 "plateau"
+	private explicit_type "int[][]"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136066 "grenierJoueur1"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136194 "grenierJoueur2"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 140290 "initialiserPlateau"
+	private explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140418 "PlateauAwale"
+	public return_type class_ref 129154 // Plateau
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140546 "setCase"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140674 "getCase"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140802 "afficher"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 140930 "getGrenierJoueur1"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141058 "getGrenierJoueur2"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141186 "setGrenierJoueur1"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141314 "setGrenierJoueur2"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141442 "ajouterAuGrenier"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141570 "joueurGagnant"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141698 "rafle"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141826 "getSymboleCase"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 141954 "getTaillePlateau"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 136066 "LogiqueOthello"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 136322 "directionsPossibles"
+	class_attribute private explicit_type "AbstractMap.SimpleEntry<Integer, Integer>[]"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136450 "taillePlateau"
+	class_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 142082 "partieFinie"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142210 "coupEstValide"
+	class_operation public explicit_return_type "List<AbstractMap.SimpleEntry<Integer, Integer>>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142338 "peutJouer"
+	class_operation public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142466 "coupsPossibles"
+	class_operation public explicit_return_type "List<AbstractMap.SimpleEntry<Integer,Integer>>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 136194 "PlateauOthello"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 136578 "plateau"
+	private explicit_type "int[][]"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 142594 "initialiserPlateau"
+	private explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142722 "setCase"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142850 "getCase"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142978 "getCouleurCase"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143106 "retournerPions"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143234 "joueurGagnant"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143362 "afficher"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 136322 "AwaleStrategy"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 136706 "plateau"
+	private type class_ref 135938 // PlateauAwale
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136834 "joueurActuel"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136962 "joueur1"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137090 "joueur2"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137218 "jouerContreIA"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137346 "strategieIA"
+	private type class_ref 128770 // IAStrategy
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 143490 "initialiserJeu"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143618 "estCoupValide"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143746 "jouerCoup"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143874 "estPartieTerminee"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144002 "getGagnant"
+	public return_type class_ref 129026 // Joueurs
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144130 "afficherPlateau"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144258 "getJoueurCourant"
+	public return_type class_ref 129026 // Joueurs
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144386 "changerJoueur"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144514 "estCoupPossible"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144642 "setJoueur1"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144770 "setJoueur2"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144898 "setIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145026 "setStrategieIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145154 "getPlateau"
+	public return_type class_ref 135938 // PlateauAwale
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 136450 "JeuStrategy"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name}${extends} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 145282 "initialiserJeu"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145410 "afficherPlateau"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145538 "estPartieTerminee"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145666 "estCoupPossible"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145794 "estCoupValide"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145922 "jouerCoup"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146050 "changerJoueur"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146178 "getJoueurCourant"
+	public return_type class_ref 129026 // Joueurs
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146306 "getGagnant"
+	public return_type class_ref 129026 // Joueurs
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146434 "setJoueur1"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146562 "setJoueur2"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146690 "setIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146818 "setStrategieIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146946 "getPlateau"
+	public explicit_return_type "T"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 145282 // <unidirectional association>
+	relation 144386 --->
+	  a role_name "" private
+	    classrelation_ref 145282 // <unidirectional association>
+	  b parent class_ref 129154 // Plateau
+      end
+
+      classrelation 145410 // <unidirectional association>
+	relation 144514 --->
+	  a role_name "" private
+	    classrelation_ref 145410 // <unidirectional association>
+	  b parent class_ref 136066 // LogiqueOthello
+      end
+
+      classrelation 145538 // <unidirectional association>
+	relation 144642 --->
+	  a role_name "" private
+	    classrelation_ref 145538 // <unidirectional association>
+	  b parent class_ref 135810 // LogiqueAwale
+      end
+
+      classrelation 145666 // <unidirectional association>
+	relation 144770 --->
+	  a role_name "" private
+	    classrelation_ref 145666 // <unidirectional association>
+	  b parent class_ref 129026 // Joueurs
+      end
+
+      classrelation 146306 // <generalisation>
+	relation 145410 ---|>
+	  a public
+	    classrelation_ref 146306 // <generalisation>
+	  b parent class_ref 136578 // OthelloStrategy
+      end
+
+      classrelation 146434 // <generalisation>
+	relation 145538 ---|>
+	  a public
+	    classrelation_ref 146434 // <generalisation>
+	  b parent class_ref 136322 // AwaleStrategy
+      end
+    end
+
+    class 136578 "OthelloStrategy"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 137474 "plateau"
+	private type class_ref 136194 // PlateauOthello
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137602 "joueurCourant"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137730 "joueur1"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137858 "joueur2"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137986 "ordinateur"
+	private type class_ref 129026 // Joueurs
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138114 "jouerContreIA"
+	private explicit_type "bool"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138242 "strategieIA"
+	private type class_ref 128770 // IAStrategy
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 147074 "initialiserJeu"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147202 "estCoupValide"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147330 "jouerCoup"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147458 "estPartieTerminee"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147586 "getGagnant"
+	public return_type class_ref 129026 // Joueurs
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147714 "changerJoueur"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147842 "estCoupPossible"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 147970 "setJoueur1"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 148098 "setJoueur2"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 148226 "setIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 148354 "setStrategieIA"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 148482 "getPlateau"
+	public return_type class_ref 136194 // PlateauOthello
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+  end
+end
