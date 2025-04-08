@@ -1,7 +1,8 @@
-package modele;
+package modele.Othello;
+
+import modele.Joueurs;
 
 import java.util.AbstractMap;
-import java.util.List;
 
 public interface IAStrategy {
     /**
@@ -12,5 +13,5 @@ public interface IAStrategy {
      * @param joueur2 Les informations du joueur 2.
      * @return Les coordonnées du prochain coup (x, y) ou null si aucun coup n'est valide.
      */
-    AbstractMap.SimpleEntry<Integer,Integer> calculerCoup(Plateau plateau, int joueurCourant, Joueurs joueur1, Joueurs joueur2);
+    AbstractMap.SimpleEntry<Integer,Integer> calculerCoup(PlateauOthello plateau, int joueurCourant, Joueurs joueur1, Joueurs joueur2);
 } 
