@@ -38,7 +38,7 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
      * Vérifie si un coup est valide pour le joueur courant.
      *
      * @param x La ligne (non utilisée dans Awalé mais conservée pour compatibilité).
-     * @param y L’index de la case dans le camp du joueur.
+     * @param y L'index de la case dans le camp du joueur.
      * @return true si le coup est autorisé, false sinon.
      */
 
@@ -52,11 +52,20 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
      * Joue le coup donné pour le joueur courant, puis change de joueur.
      *
      * @param x La ligne (inutile ici).
-     * @param y L’index de la case.
+     * @param y L'index de la case.
      */
     @Override
     public void jouerCoup(int x, int y) {
+        int nbGraines = plateau.getCase(joueurActuel - 1, y);
         LogiqueAwale.jouerCoup(x, y, plateau, joueurActuel);
+        // Calculer la position finale après la distribution des graines
+        int positionFinale = (y + nbGraines) % PlateauAwale.TAILLE_PLATEAU_AWALE;
+        int ligneAdverse = (joueurActuel == 1) ? 1 : 0;
+        // Vérifier si la case finale contient 2 ou 3 graines pour effectuer la rafle
+        if (plateau.getCase(ligneAdverse, positionFinale) == 2 || plateau.getCase(ligneAdverse, positionFinale) == 3) {
+            int grainesRaflees = plateau.rafle(ligneAdverse, positionFinale, joueurActuel);
+            plateau.ajouterAuGrenier(joueurActuel, grainesRaflees);
+        }
         changerJoueur();
     }
 
@@ -76,7 +85,7 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
     /**
      * Retourne le joueur gagnant à la fin de la partie.
      *
-     * @return Le joueur gagnant, ou null en cas d’égalité.
+     * @return Le joueur gagnant, ou null en cas d'égalité.
      */
 
     @Override
@@ -92,9 +101,9 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
 
 
     /**
-     * Affiche l’état actuel du plateau via l’interface console.
+     * Affiche l'état actuel du plateau via l'interface console.
      *
-     * @param ihm L’interface utilisateur utilisée pour afficher le plateau.
+     * @param ihm L'interface utilisateur utilisée pour afficher le plateau.
      */
     @Override
     public void afficherPlateau(Ihm ihm) {
@@ -105,7 +114,7 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
     /**
      * Retourne le joueur courant.
      *
-     * @return Le joueur dont c’est le tour.
+     * @return Le joueur dont c'est le tour.
      */
     @Override
     public Joueurs getJoueurCourant() {
@@ -165,9 +174,9 @@ public class AwaleStrategy implements JeuStrategy<PlateauAwale> {
 
 
     /**
-     * Définit la stratégie utilisée par l’IA.
+     * Définit la stratégie utilisée par l'IA.
      *
-     * @param strategieIA La stratégie d’intelligence artificielle.
+     * @param strategieIA La stratégie d'intelligence artificielle.
      */
     @Override
     public void setStrategieIA(IAStrategy strategieIA) {

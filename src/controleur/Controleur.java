@@ -66,6 +66,7 @@ public class Controleur {
             joueur2.setNomJoueur(ihm.demanderNomJoueur(false));
         } else {
             ordinateur.setNomJoueur("Ordinateur");
+            joueur2 = ordinateur;  // Configure l'ordinateur comme joueur 2
             boolean utiliserMinMax = ihm.choisirIAMinMax();
             this.strategieIA = utiliserMinMax ? new IAMinMax() : new IARandom();
         }
@@ -83,7 +84,11 @@ public class Controleur {
                 strategieCourante.afficherPlateau(ihm);
                 
                 if (!strategieCourante.estCoupPossible()) {
-                    ihm.afficherPlusDeCoup(strategieCourante.getJoueurCourant());
+                    if (jouerContreIA && strategieCourante.getJoueurCourant() == joueur2) {
+                        ihm.afficherMessageIA("L'IA n'a pas de coup possible et doit passer son tour.");
+                    } else {
+                        ihm.afficherPlusDeCoup(strategieCourante.getJoueurCourant());
+                    }
                     strategieCourante.changerJoueur();
                     continue;
                 }
@@ -94,19 +99,21 @@ public class Controleur {
                 int[] coup = null;
 
                 while (!coupValide) {
-                    if (strategieCourante.getJoueurCourant() == ordinateur) {
+                    if (jouerContreIA && strategieCourante.getJoueurCourant() == joueur2) {
                         // L'IA joue (uniquement pour Othello)
                         if (strategieCourante instanceof OthelloStrategy) {
                             OthelloStrategy othelloStrategy = (OthelloStrategy) strategieCourante;
                             AbstractMap.SimpleEntry<Integer, Integer> meilleurCoup = strategieIA.calculerCoup(
                                 othelloStrategy.getPlateau(),
-                                2,
+                                2,  // L'IA est toujours le joueur 2
                                 joueur1,
                                 joueur2
                             );
                             if (meilleurCoup != null) {
                                 x = meilleurCoup.getKey();
                                 y = meilleurCoup.getValue();
+                                // Afficher le coup joué par l'IA
+                                ihm.afficherMessageIA("L'IA joue en : " + (x + 1) + " " + (char)('A' + y));
                                 coupValide = true;
                             } else {
                                 coupValide = false;
@@ -117,15 +124,22 @@ public class Controleur {
                         }
                     } else {
                         // Le joueur humain joue
-                        String coupStr;
-                        if (strategieCourante instanceof OthelloStrategy) {
-                            coupStr = ihm.choixCoupOthello(strategieCourante.getJoueurCourant());
-                        } else {
-                            coupStr = ihm.choixCoupAwale(strategieCourante.getJoueurCourant());
-                        }
-                        
-                        // Conversion du String en coordonnées
                         try {
+                            String coupStr;
+                            if (strategieCourante instanceof OthelloStrategy) {
+                                coupStr = ihm.choixCoupOthello(strategieCourante.getJoueurCourant());
+                                // Vérifier si le joueur veut passer son tour
+                                if (coupStr.equalsIgnoreCase("P")) {
+                                    if (strategieCourante.estCoupPossible()) {
+                                        ihm.afficherErreur("Vous ne pouvez pas passer votre tour car il vous reste des coups possibles !");
+                                        coupValide = false;
+                                        continue;
+                                    }
+                                }
+                            } else {
+                                coupStr = ihm.choixCoupAwale(strategieCourante.getJoueurCourant());
+                            }
+                            
                             String[] coordonnees = coupStr.split(" ");
                             if (strategieCourante instanceof OthelloStrategy) {
                                 // Pour Othello : format "3 D"
