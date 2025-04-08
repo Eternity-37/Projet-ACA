@@ -80,11 +80,7 @@ public class OthelloStrategy implements JeuStrategy<PlateauOthello> {
 
     @Override
     public void changerJoueur() {
-        if (jouerContreIA) {
-            joueurCourant = (joueurCourant == joueur1) ? ordinateur : joueur1;
-        } else {
-            joueurCourant = (joueurCourant == joueur1) ? joueur2 : joueur1;
-        }
+        joueurCourant = (joueurCourant == joueur1) ? joueur2 : joueur1;
     }
 
     @Override

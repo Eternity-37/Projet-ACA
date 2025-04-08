@@ -132,11 +132,7 @@ public class LogiqueAwale {
                 }
             } else {
                 // On est dans un grenier
-                if (grenierActuel == joueurActuel) {  // On ne distribue que dans le grenier du joueur qui joue
-                    plateau.ajouterAuGrenier(grenierActuel, 1);
-                    nbGraines--;
-                }
-                // On passe à la ligne suivante
+                // On ne distribue rien dans le grenier, on passe directement à la case suivante
                 position = -1;  // Sera incrémenté à 0 au prochain tour
                 ligne = (ligne == 0) ? 1 : 0;
                 grenierActuel = (grenierActuel == 1) ? 2 : 1;  // Alterne entre les greniers
@@ -158,7 +154,7 @@ public class LogiqueAwale {
                     break;
                 }
             }
-            // Ajoute les graines capturées au grenier du joueur
+            // Ajoute les graines capturées au grenier du joueur uniquement si des graines ont été capturées
             if (grainesCapturees > 0) {
                 plateau.ajouterAuGrenier(joueurActuel, grainesCapturees);
             }
